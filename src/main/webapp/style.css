@@ -18,6 +18,16 @@
     background-color: #d6dce2;
 }
 
+.nav2{
+    height: 40px;
+    display: flex;
+    justify-content: right;
+
+    align-items: center;
+    text-align: center;
+    background-color: #eeefef;
+}
+
 .nav h2{
     font-size: 30px;
     font-family: 'Times New Roman', Times, serif;

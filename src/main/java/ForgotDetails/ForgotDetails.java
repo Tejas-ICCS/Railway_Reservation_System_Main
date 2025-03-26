@@ -89,7 +89,7 @@ public class ForgotDetails extends HttpServlet{
 
 						SendEmail sendEmail = new SendEmail();
 						sendEmail.sendEmail(subject, emailId, from, ForgotDetails.getOtp(), fname, lname,htmlContent,textContent);
-  						response.sendRedirect("/Railway_Reservation_system/submitOtp.jsp");
+  						response.sendRedirect("/Railway_Reservation_System/submitOtp.jsp");
 
 					
 					}catch(Exception e) {

@@ -64,14 +64,14 @@ public class RegisterUser extends HttpServlet {
 				if (result > 0) {
 
 					System.out.println("User Registered Successfully");
-					response.sendRedirect("/Railway_Reservation_system/index.jsp");
+					response.sendRedirect("/Railway_Reservation_System/index.jsp");
 
 				} else {
 					/*response.setContentType("text/html");
 					out.print("<h3 style='color:Red'> User Register Failed  </h3>");*/
 
 					System.out.printf("User %s already exists.\n",fname);
-					response.sendRedirect("/railway_reservation_system/index.jsp");
+					response.sendRedirect("/railway_reservation_System/index.jsp");
 //					RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
 //					rd.include(request, response);
 				}

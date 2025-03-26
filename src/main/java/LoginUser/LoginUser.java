@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/loginUserNew")
 public class LoginUser extends HttpServlet {
@@ -37,8 +38,10 @@ public class LoginUser extends HttpServlet {
 			if(rs.next()) {
 				 fname = rs.getString("firstName");
 				 lname = rs.getString("lastName");
-
-				response.sendRedirect("mainPage.jsp?firstName=" + fname + "&lastName=" + lname);
+				HttpSession session = request.getSession();
+				String name = fname + " " + lname;
+				session.setAttribute("FirstName", name);
+				response.sendRedirect("/Railway_Reservation_System/index.jsp");
 			}
 			else {
 				response.sendRedirect("login.jsp?error= User Not Found ");

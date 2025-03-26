@@ -68,7 +68,7 @@ public class submitOTP extends HttpServlet {
                 ps.setString(2,emailId);
                 ps.executeUpdate();
                 System.out.println("Password updated");
-                response.sendRedirect("/Railway_Reservation_system/login.jsp");
+                response.sendRedirect("/Railway_Reservation_System/login.jsp");
             }
         }catch(Exception e){
             e.printStackTrace();

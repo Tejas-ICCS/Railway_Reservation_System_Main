@@ -1,3 +1,10 @@
+<%@ page session="true" %>
+<%
+    String user = (String) session.getAttribute("FirstName");
+    if (user == null){
+        response.sendRedirect("/Railway_Reservation_System/login.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +18,9 @@
     <header>
         <div class="nav">
             <h2>Railway Reservation System</h2>
+        </div>
+        <div class="nav2">
+            <h4 style="text-align: right;">Welcome  <%= user %> </h4>
         </div>
         <div class="nav1">
             <img src="Image/logo.png" alt="Railway logo">
