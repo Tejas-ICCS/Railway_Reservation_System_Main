@@ -28,15 +28,15 @@ public class LoginUser extends HttpServlet {
 
         PreparedStatement ps = null;
         try {
-            ps = con.prepareStatement("select First_Name,Last_Name from new_user where email = ? AND User_Password = ? ");
+            ps = con.prepareStatement("select firstName,lastName from new_user where emailID = ? AND password = ? ");
 			ps.setString(1, username);
 			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
 			String fname;
 			String lname;
 			if(rs.next()) {
-				 fname = rs.getString("First_Name");
-				 lname = rs.getString("Last_Name");
+				 fname = rs.getString("firstName");
+				 lname = rs.getString("lastName");
 
 				response.sendRedirect("mainPage.jsp?firstName=" + fname + "&lastName=" + lname);
 			}
