@@ -17,18 +17,11 @@
 
             <h1>Log in</h1>
             <p id="tag">Need a User account? <a href="register.jsp">Create an account</a></p>
-            <form>
                 <label for="username">Username or Email</label>
                 <input type="text" id="username" name="username" placeholder="Enter your email or username" required>
-                <%
-                    String username ="";
-                %>
                 <label for="password">Password</label>
                 <div class="password-field">
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                    <%
-                        String password ="";
-                    %>
                     <span class="show-password">Show</span>
                 </div>
                 
@@ -46,20 +39,12 @@
         			</script>
    				 </c:if>
 
-
-                <%
-                    String errorMessage ="";
-                    if (username.isEmpty() || password.isEmpty()){
-                        errorMessage = "Some fields Are Missing ";
-                    }
-                %>
                 <div class="help-links">
-                    <a href="">Forgot Account Details </a>
+                    <a href="agent.jsp">System Login</a>
                     <a href="forgotPassword.jsp">Forgot password?</a>
-                    <a href="#">Can't log in?</a>
+                    <a href="#">Change Password</a>
                     <a href="index.jsp">Home</a>
                 </div>
-            </form>
         </div>
     </div>
     </form>
