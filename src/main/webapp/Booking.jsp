@@ -5,6 +5,13 @@
   Time: 20:31
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page session="true" %>
+<%
+     String user = (String) session.getAttribute("FirstName");
+    if (user == null){
+        response.sendRedirect("/Railway_Reservation_System/login.jsp");
+    }
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">

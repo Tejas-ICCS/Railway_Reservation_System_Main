@@ -1,10 +1,8 @@
 <%@ page session="true" %>
 <%
     String user = (String) session.getAttribute("FirstName");
-    if (user == null){
-        response.sendRedirect("/Railway_Reservation_System/login.jsp");
-    }
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="Image/logo.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Railway Reservation System</title>
 </head>
 <body>
@@ -20,7 +19,13 @@
             <h2>Railway Reservation System</h2>
         </div>
         <div class="nav2">
-            <h4 style="text-align: right;">Welcome  <%= user %> </h4>
+            <% if(user != null) {%>
+            <h4 style="text-align: right;"><i class='bx bx-user'></i> Welcome,  <%= user %> &emsp; </h4>
+            <a href="logout.jsp"><i class='bx bx-log-out'></i></a>
+            <%}else {%>
+            <h4 style="text-align: right;"><i class='bx bx-user'></i> Welcome, Guest! </h4>
+            <%}%>
+<%--            <i class='bx bx-log-out'><a href="logout.jsp"></a></i>--%>
         </div>
         <div class="nav1">
             <img src="Image/logo.png" alt="Railway logo">

@@ -49,7 +49,7 @@ public class submitOTP extends HttpServlet {
                 String from = "railway.reservationproject12@gmail.com";
                 String fname="";
                 String lname="";
-                String subject = "OTP verification";
+                String subject = "Password Change";
                 String selectFnameLname = "select firstName,lastName from new_user where emailID='"+emailId+"'";
                 ResultSet rs = con.createStatement().executeQuery(selectFnameLname);
                 if (rs.next()){
