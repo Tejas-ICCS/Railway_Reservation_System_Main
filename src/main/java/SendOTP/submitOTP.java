@@ -50,11 +50,11 @@ public class submitOTP extends HttpServlet {
                 String fname="";
                 String lname="";
                 String subject = "OTP verification";
-                String selectFnameLname = "select First_Name,Last_Name from new_user where email='"+emailId+"'";
+                String selectFnameLname = "select firstName,lastName from new_user where emailID='"+emailId+"'";
                 ResultSet rs = con.createStatement().executeQuery(selectFnameLname);
                 if (rs.next()){
-                     fname = rs.getString("First_Name");
-                     lname = rs.getString("Last_Name");
+                     fname = rs.getString("firstName");
+                     lname = rs.getString("lastName");
                 }
 
                 String htmlContent = "<h2>Hie "+fname+" "+lname+"\n</h2>\n<p> Your new password is: <h3>"+this.password+"</h3></p>\n\n" +
@@ -62,13 +62,13 @@ public class submitOTP extends HttpServlet {
 
                 SendEmail sendEmail = new SendEmail();
                 sendEmail.sendEmail(subject,emailId,from,0,fname,lname,htmlContent,"");
-                String updatePassword = "update new_user set User_Password=? where email=?";
+                String updatePassword = "update new_user set password=? where emailID=?";
                 PreparedStatement ps = con.prepareStatement(updatePassword);
                 ps.setString(1,this.password);
                 ps.setString(2,emailId);
                 ps.executeUpdate();
                 System.out.println("Password updated");
-                response.sendRedirect("/Railway_Reservation_system_war/login.jsp");
+                response.sendRedirect("/Railway_Reservation_system/login.jsp");
             }
         }catch(Exception e){
             e.printStackTrace();

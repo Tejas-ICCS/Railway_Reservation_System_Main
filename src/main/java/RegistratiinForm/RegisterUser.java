@@ -53,27 +53,27 @@ public class RegisterUser extends HttpServlet {
 				PreparedStatement ps = con.prepareStatement("insert into new_user values(?,?,?,?,?,?,?)");
 				ps.setString(1, fname);
 				ps.setString(2, lname);
-				ps.setString(3, dateOfBirth);
-				ps.setString(4, gender);
-				ps.setString(5, email);
-				ps.setString(6, mobile);
-				ps.setString(7, password);
+				ps.setString(3, email);
+				ps.setString(4, mobile);
+				ps.setString(5, password);
+				ps.setString(6, gender);
+				ps.setString(7, dateOfBirth);
 
 				int result = ps.executeUpdate();
 
 				if (result > 0) {
 
-					/*
-					 * response.setContentType("text/html");
-					 * out.print("<h3 style='color:green'> User Added </h3>");
-					 *  RequestDispatcher rd = request.getRequestDispatcher("/register.jsp"); rd.include(request,
-					 * response);
-					 */
+					System.out.println("User Registered Successfully");
+					response.sendRedirect("/Railway_Reservation_system/index.jsp");
+
 				} else {
-					response.setContentType("text/html");
-					out.print("<h3 style='color:Red'> User Register Failed  </h3>");
-					RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
-					rd.include(request, response);
+					/*response.setContentType("text/html");
+					out.print("<h3 style='color:Red'> User Register Failed  </h3>");*/
+
+					System.out.printf("User %s already exists.\n",fname);
+					response.sendRedirect("/railway_reservation_system/index.jsp");
+//					RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
+//					rd.include(request, response);
 				}
 			}
 

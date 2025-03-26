@@ -31,8 +31,8 @@
             </div>
             <span>Mobile Number</span>
             <div class="form-group">
-                
-                <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="Enter Mobile Number" required>
+
+                <input type="text" id="mobile" name="mobile" maxlength="10" minlength="10" pattern="[0-9]{10}" placeholder="Enter Mobile Number" required>
             </div>
             <span>Password</span>
             <div class="form-group">
