@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    background-image:url("Image/imageedit_1_3561537787.jpg") ;
+}
+
+.container{
+
+    height: 450px;
+    width: auto;
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main h1{
+    font-size: 50px;
+    padding-bottom: 30px;
+    letter-spacing: 5px;
+    color: orangered;
+    text-shadow: 3px 3px 4px  #fff;
+}
+
+.main p{
+    font-size: 20px;
+    font: bold;
+    color: #fff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 5px auto;
+}

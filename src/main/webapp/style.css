@@ -1,0 +1,256 @@
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header Section/ Navigation */
+
+.nav{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #d6dce2;
+}
+
+.nav h2{
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 8px;
+    font-weight: 900;
+    font: bolder;
+    color: #3f4f5e ;
+}
+
+.nav1{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 90px;
+    background-color:#ecf5f5ba ;
+}
+
+.nav1 a{
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: #283747 ;
+}
+
+.nav1 a:active{
+    border-bottom: .5px solid #283747 ;
+    font-size: 30px ;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    transform: scale(0.8);
+    box-shadow: 0.5px 10px 10px rgba(0, 0, 0, 0.5); 
+}
+
+.nav1 img{
+    width: 80px;
+    height: 80px;
+    
+}
+
+/*  Main Section   */
+
+.main{
+    height: 900px;
+    background-image: url("Image/train.avif");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-size: cover;
+    backdrop-filter: 5px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+
+    color: white;
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#mh1{
+    letter-spacing: 5px;
+    color: rgba(245, 245, 245, 0.563);
+    background: transparent;
+    
+}
+
+#mh3{
+    letter-spacing: 2px;
+    color: #ffffffb3;
+}
+
+.btn{
+    height: 50px;
+    width: 300px;
+    text-align: center;
+    letter-spacing: 10px;
+    background-color:#84e7c369;
+    font-weight: 700;
+    color: #000000b3;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.4s ease;
+
+}
+
+.btn a{
+    text-decoration: none;
+    color: #000000b3;
+    transition: all 0.4s ease;
+}
+
+.btn a:active{
+    transform: scale(0.9);
+}
+
+.btn:active{
+    transform: scale(0.9);
+    box-shadow: 0.5px 10px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+/* City Image */
+
+.main1{
+    margin: 10px;
+    padding-top: 20px;
+    display: flex;
+    padding-bottom: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction:row ;
+    flex-wrap: wrap;
+    background-color: rgba(108, 231, 92, 0.493);
+}
+
+.main1 img{
+    height: 200px;
+    width: 300px;
+    transition: all 0.4s ease;
+    /* display: grid;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap; */
+}
+
+.main1 img:hover{
+    transform: scale(0.5px);
+}
+
+.i1{
+    /* display: flex;
+    flex-direction: row;
+    padding-bottom: 20px; */
+    /* justify-content: center;
+    align-items: center; */
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.i1 h3{
+    font-family:'Arial Narrow Bold', sans-serif ;
+    font-weight: 200;
+    font-size: 15px;
+    letter-spacing: 5px;
+    background-color: #687e926e   ;
+}
+
+.info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.left{
+    width: 50%;
+    padding-top: 10px ;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family:  Helvetica, sans-serif;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+
+.left h2{
+    color: #283747;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    letter-spacing: 3px;
+    font-size: 40px;
+}
+
+.right{
+    width: 50%;
+}
+
+.right img{
+    height: auto;
+    width: 740px
+        
+}
+
+.team{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: 30px;
+    padding-top: 50px;
+}
+
+.t1 img{
+    height: 350px;
+    width: 350px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.team1{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 10px;
+    color: #3f4f5e;
+    font-weight:bolder;
+}
+
+#tag{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 20px;
+    font-size: 25px;
+    letter-spacing: 3px;
+    color:#283747;
+    padding-left: 10px;
+}
+
+/* .foot{
+    height: 400px;
+    width: 100%;
+    background-color: #3f4f5eb1;
+    margin: 10px;
+} */
+
+.line{
+    height: 1px;
+    width: 100%;
+    background-color: #3f4f5e;
+    margin: 10px;
+}
