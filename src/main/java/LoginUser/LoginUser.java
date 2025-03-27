@@ -35,16 +35,19 @@ public class LoginUser extends HttpServlet {
 			ResultSet rs = ps.executeQuery();
 			String fname;
 			String lname;
+			HttpSession session = request.getSession();
 			if(rs.next()) {
 				 fname = rs.getString("firstName");
 				 lname = rs.getString("lastName");
-				HttpSession session = request.getSession();
+
 				String name = fname + " " + lname;
 				session.setAttribute("FirstName", name);
 				response.sendRedirect("/Railway_Reservation_System/index.jsp");
 			}
 			else {
-				response.sendRedirect("login.jsp?error= User Not Found ");
+				session.setAttribute("error", "User Not Found");
+				response.sendRedirect("login.jsp");
+//				response.sendRedirect("login.jsp?error= User Not Found ");
 
 			}
 		}catch(Exception e) {

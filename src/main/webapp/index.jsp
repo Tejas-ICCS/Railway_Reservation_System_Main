@@ -30,7 +30,12 @@
         <div class="nav1">
             <img src="Image/logo.png" alt="Railway logo">
             <a href="index.jsp" target="_parent">HOME</a>
-            <a href="login.jsp">USER LOGIN</a>
+            <% if(user == null) {%>
+                <a href="login.jsp">USER LOGIN</a>
+            <%}%>
+
+
+
             <a href="agent.jsp">AGENT LOGIN</a>
 <%--            <a href="submitOtp.jsp">Submit OTP</a>--%>
             <a href="register.jsp">REGISTER</a>

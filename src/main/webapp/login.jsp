@@ -31,13 +31,21 @@
                 </div>
                 
                 <button type="submit" class="login-btn">Log in</button>
-                
-                <c:if test="${not empty param.error}">
-        			<script>
-            				alert("${param.error}");
-            				
-        			</script>
-   				 </c:if>
+
+            <c:if test="${not empty sessionScope.error}">
+                <script>
+                    alert("${sessionScope.error}");
+                </script>
+                <% session.removeAttribute("error"); %>
+            </c:if>
+
+
+        <%--                <c:if test="${not empty param.error}">--%>
+<%--        			<script>--%>
+<%--            				alert("${param.error}");--%>
+<%--            				--%>
+<%--        			</script>--%>
+<%--   				 </c:if>--%>
 
                 <div class="help-links">
                     <a href="agent.jsp">System Login</a>
