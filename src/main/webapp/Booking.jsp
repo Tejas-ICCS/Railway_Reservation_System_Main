@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: ACER
   Date: 15-03-2025
@@ -15,12 +15,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
+
+<style>
+
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="BookingStyle.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Booking </title>
+    <link rel="stylesheet" href="Bookingstyle.css">
+    <link rel="icon" href="Image/logo.png">
+<%--    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>--%>
 
 </head>
 <body>
@@ -39,63 +45,81 @@
 </header>
 
 
-<div class="serchDetails">
-    <form action="" method="post">
-        <h2>Train Ticket Booking</h2>
-        <input type="text" id="source" name="source" placeholder="Source Station" required>
-        <input type="text" id="destination" name="destination" placeholder="Destination Station" required>
-        <input type="date" id="date" required name="dateOfJourney" pattern="">
+<div class="container">
+    <br><br>
+    <div class="header" style="letter-spacing: 10px;font-weight: 800">Train Ticket Booking</div>
+    <div class="sub-header"></div>
+    <form action="bookTickit" method="POST">
+        <div class="booking-box">
+            <div>
+                <span class="icon">🚆</span>
+                <div style="font-size: 20px;font-weight: 600;letter-spacing: 5px">From</div>
+                <input type="text" name="from" REQUIRED>
+            </div>
+            <%--<div>
+                <span class="icon">🔁</span>
+            </div>--%>
+            <div>
+                <span class="icon">🚆</span>
+                <div style="font-size: 20px;font-weight: 600;letter-spacing: 5px">To</div>
+                <input type="text" name="to" required>
+            </div>
+            <div>
+                <span class="icon">📅</span>
+                <div style="font-size: 20px;font-weight: 600;letter-spacing: 5px">Departure Date</div>
+                <input type="date" name="departure" required>
+            </div>
 
-        <button type="submit" name="submit"  class="btn1" id="sumbit" value="Search Train">Search Train</button>
+        </div>
+
+        <button type="submit" class="search-button">SEARCH</button>
     </form>
+
+
+    <%
+        List<String[]> trainList = (List<String[]>) request.getAttribute("trainList");
+        if (trainList != null && !trainList.isEmpty()) {
+    %>
+    <h2>Available Trains</h2>
+    <table border="1" style="width: 100%">
+        <tr>
+            <th>Train No</th>
+            <th>Train Name</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure Time</th>
+            <th>Frequency</th>
+            <th>Total Coach</th>
+
+        </tr>
+        <% for (String[] train : trainList) { %>
+        <tr>
+            <td><%= train[0] %></td>
+            <td><%= train[1] %></td>
+            <td><%= train[2] %></td>
+            <td><%= train[3] %></td>
+            <td><%= train[4] %></td>
+            <td><%= train[5] %></td>
+            <td><%= train[6] %></td>
+            <td><button style="background-color: green" class="btn3">Book</button></td>
+        </tr>
+        <% } %>
+    </table>
+    <%
+        // Clear train list after displaying results to prevent persistence on refresh
+        session.removeAttribute("trainList");
+    %>
+    <% } else if (request.getAttribute("trainList") != null) { %>
+    <p>No trains available for the selected route and date.</p>
+    <% } %>
+
+    <br><br>
 </div>
 
 
-<footer style="background-color: #222; color: #fff; padding: 20px 0;">
-    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; padding: 20px;">
-
-        <!-- About Section -->
-        <div style="max-width: 300px;">
-            <h4>About Us</h4>
-            <p >We aim to provide a seamless railway ticket booking experience, offering real-time updates, schedule management, and customer support.</p>
-        </div>
-
-        <!-- Quick Links -->
-        <div style="max-width: 200px;">
-            <h4>Quick Links</h4>
-            <ul style="list-style-type: none; padding: 0;">
-                <li><a href="index.jsp" style="color: #fff; text-decoration: none;">Home</a></li>
-                <li><a href="book.jsp" style="color: #fff; text-decoration: none;">Book Ticket</a></li>
-                <li><a href="train-schedule.jsp" style="color: #fff; text-decoration: none;">Train Schedule</a></li>
-                <li><a href="contact.jsp" style="color: #fff; text-decoration: none;">Contact Us</a></li>
-                <li><a href="help.jsp" style="color: #fff; text-decoration: none;">FAQs</a></li>
-            </ul>
-        </div>
-
-        <!-- Customer Support -->
-        <div style="max-width: 200px;">
-            <h4>Customer Support</h4>
-            <ul style="list-style-type: none; padding: 0;">
-                <li>Helpline: 7666300048</li>
-                <li>Email: tejasdevgharkar12@gmail.com</li>
-                <li><a href="feedback.jsp" style="color: #fff; text-decoration: none;">Submit Feedback</a></li>
-            </ul>
-        </div>
-
-        <!-- Social Media Links -->
-        <div style="max-width: 200px;">
-            <h4>Follow Us</h4>
-            <a href="" target="_blank" style="color: #fff; margin-right: 10px;">Facebook</a>
-            <a href="" target="_blank" style="color: #fff; margin-right: 10px;">Twitter</a>
-            <a href="" target="_blank" style="color: #fff;">Instagram</a>
-        </div>
-
-    </div>
-
-    <!-- Copyright Section -->
-    <div style="text-align: center; border-top: 1px solid #555; padding: 10px 0;">
-        <p>&copy; 2024 Railway Reservation System. All rights reserved.</p>
-    </div>
-</footer>
+<%
+    // Clear train list after displaying results to prevent persistence on refresh
+    session.removeAttribute("trainList");
+%>
 </body>
 </html>

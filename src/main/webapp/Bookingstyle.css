@@ -1,0 +1,128 @@
+.nav1{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 90px;
+    background-color:#d6dce2 ;
+    margin: 0px;
+    padding: 0%;
+}
+
+.container{
+    background-image: none;
+    background-color: #d4efe4;
+    height: auto;
+}
+
+.nav1 a{
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: #283747 ;
+}
+
+.nav1 a:active{
+    border-bottom: .5px solid #283747 ;
+    font-size: 30px ;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    transform: scale(0.8);
+    box-shadow: 0.5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav1 img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.nav a{
+    text-decoration: none;
+    margin: 0px 20px 0px 20px;
+    letter-spacing: 2px;
+
+}
+
+
+body {
+    background-image: none;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    /*margin: 20px;*/
+
+}
+
+.header {
+
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+}
+.sub-header {
+    font-size: 16px;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.79);
+    margin-bottom: 20px;
+}
+.booking-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 5px;*/
+    padding: 15px;
+    /*background-color: #f9f9f9;*/
+}
+.booking-box div {
+    flex: 1;
+    text-align: center;
+}
+.icon {
+    display: block;
+    font-size: 20px;
+    /*margin-bottom: 5px;*/
+}
+.search-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 30px;
+    width: 300px;
+    height: 50px;
+    letter-spacing: 8px;
+    font-weight: 600;
+}
+.search-button:hover {
+    background-color: darkgreen;
+}
+input {
+    border: 1px solid rgba(204, 204, 204, 0);
+    padding: 5px;
+    border-radius: 5px;
+    width: 400px;
+    height: 45px;
+    text-align: center;
+    background-color: rgba(153, 153, 153, 0.58);
+    margin: 10px;
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+span{
+    font-size: 30px;
+}
+
+.btn3{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    width: 60px;
+}
