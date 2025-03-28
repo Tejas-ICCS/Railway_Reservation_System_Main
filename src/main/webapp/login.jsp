@@ -32,12 +32,19 @@
                 
                 <button type="submit" class="login-btn">Log in</button>
 
-            <c:if test="${not empty sessionScope.error}">
+            <%
+                String error = (String) session.getAttribute("error");
+                if (error != null) {
+            %>
+
                 <script>
-                    alert("${sessionScope.error}");
+                    alert("<%= error %>");
                 </script>
-                <% session.removeAttribute("error"); %>
-            </c:if>
+                <%
+                    session.removeAttribute("error");
+                    }
+                %>
+
 
 
         <%--                <c:if test="${not empty param.error}">--%>

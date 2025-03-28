@@ -101,6 +101,7 @@
             <td><%= train[4] %></td>
             <td><%= train[5] %></td>
             <td><%= train[6] %></td>
+            <td><button style="background-color: green" class="btn3"><a>View</a></button></td>
             <td><button style="background-color: green" class="btn3">Book</button></td>
         </tr>
         <% } %>
