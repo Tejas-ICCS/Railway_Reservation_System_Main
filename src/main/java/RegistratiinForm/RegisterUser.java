@@ -32,10 +32,6 @@ public class RegisterUser extends HttpServlet {
 		String dateOfBirth = request.getParameter("dateOfBirth");
 		String password = request.getParameter("pass");
 
-		/*
-		 * DatabaseConnection database = new DatabaseConnection(); Connection con =
-		 * database.getDataBaseConnection();
-		 */
 
 		final String url = "jdbc:mysql://localhost:3306/railway_reservation_system";
 		final String pass = "Tejas172304@";
@@ -87,15 +83,6 @@ public class RegisterUser extends HttpServlet {
 						response.sendRedirect("/Railway_Reservation_System/index.jsp");
 
 					}
-					/*else {
-					*//*response.setContentType("text/html");
-					out.print("<h3 style='color:Red'> User Register Failed  </h3>");*//*
-
-						System.out.printf("User %s already exists.\n",fname);
-						response.sendRedirect("/railway_reservation_System/index.jsp");
-//					RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
-//					rd.include(request, response);
-					}*/
 				}
 			}
 
