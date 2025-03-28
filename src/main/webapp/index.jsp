@@ -32,11 +32,12 @@
             <a href="index.jsp" target="_parent">HOME</a>
             <% if(user == null) {%>
                 <a href="login.jsp">USER LOGIN</a>
+                <a href="agent.jsp">AGENT LOGIN</a>
             <%}%>
 
 
 
-            <a href="agent.jsp">AGENT LOGIN</a>
+
 <%--            <a href="submitOtp.jsp">Submit OTP</a>--%>
             <a href="register.jsp">REGISTER</a>
             <a href="train-schedule.jsp">TRAIN SCHEDULE</a>
@@ -52,7 +53,7 @@
         <br>
         <span>BOOK YOUR TICKETS HERE</span>
         <br><br>
-        <button class="btn" ><a href="Booking.jsp">BOOK TICKET</a></button>
+        <a href="Booking.jsp"><button class="btn" >BOOK TICKET</button></a>
     </div>
 
     <div class="main1">

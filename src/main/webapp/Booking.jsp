@@ -54,7 +54,15 @@
             <div>
                 <span class="icon">🚆</span>
                 <div style="font-size: 20px;font-weight: 600;letter-spacing: 5px">From</div>
-                <input type="text" name="from" REQUIRED>
+                <input type="text" name="from" <%
+            String from = (String) session.getAttribute("from");
+            if (from != null) {
+        %>
+                       value="<%= from %>"
+                    <%
+                    session.removeAttribute("from");
+            }
+        %> REQUIRED>
             </div>
             <%--<div>
                 <span class="icon">🔁</span>
@@ -62,12 +70,32 @@
             <div>
                 <span class="icon">🚆</span>
                 <div style="font-size: 20px;font-weight: 600;letter-spacing: 5px">To</div>
-                <input type="text" name="to" required>
+                <input type="text" name="to"
+                    <%
+            String to = (String) session.getAttribute("to");
+            if (to != null) {
+        %>
+                       value="<%= to %>"
+                    <%
+                    session.removeAttribute("to");
+            }
+        %>
+                       required>
             </div>
+
             <div>
                 <span class="icon">📅</span>
                 <div style="font-size: 20px;font-weight: 600;letter-spacing: 5px">Departure Date</div>
-                <input type="date" name="departure" required>
+                <input type="date" name="departure" <%
+            String date = (String) session.getAttribute("date");
+            if (date != null) {
+        %>
+                       value="<%= date %>"
+                       <%
+                       session.removeAttribute("date");
+            }
+        %>
+                       required>
             </div>
 
         </div>
@@ -77,7 +105,7 @@
 
 
     <%
-        List<String[]> trainList = (List<String[]>) request.getAttribute("trainList");
+        List<String[]> trainList = (List<String[]>) session.getAttribute("trainList");
         if (trainList != null && !trainList.isEmpty()) {
     %>
     <h2>Available Trains</h2>
@@ -101,7 +129,7 @@
             <td><%= train[4] %></td>
             <td><%= train[5] %></td>
             <td><%= train[6] %></td>
-            <td><button style="background-color: green" class="btn3"><a>View</a></button></td>
+            <td><button style="background-color: orangered" class="btn3"><a>View</a></button></td>
             <td><button style="background-color: green" class="btn3">Book</button></td>
         </tr>
         <% } %>

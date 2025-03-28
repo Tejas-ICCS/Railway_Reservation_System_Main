@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ public class BookTickit extends HttpServlet {
     protected void doPost(HttpServletRequest request , HttpServletResponse response){
         String from = request.getParameter("from");
         String to = request.getParameter("to");
+        String date = request.getParameter("departure");
 
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection con = databaseConnection.getConnection();
@@ -26,11 +28,15 @@ public class BookTickit extends HttpServlet {
         List<String[]> trainList = new ArrayList<>();
 
         try{
+            HttpSession session = request.getSession();
+
             String sql = "SELECT * FROM Train WHERE train_source = ? AND train_destination = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, from);
             ps.setString(2, to);
+
             ResultSet rs = ps.executeQuery();
+
 
             while(rs.next()){
                 trainList.add(new String[]{
@@ -45,8 +51,15 @@ public class BookTickit extends HttpServlet {
             }
 
             request.setAttribute("trainList", trainList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Booking.jsp");
-            dispatcher.forward(request, response);
+    //            RequestDispatcher dispatcher = request.getRequestDispatcher("Booking.jsp");
+    //            dispatcher.forward(request, response);
+            // Store trainList in session to persist it across the redirect
+            session.setAttribute("from", from);
+            session.setAttribute("to", to);
+            session.setAttribute("date", date);
+            session.setAttribute("trainList", trainList);
+            response.sendRedirect("Booking.jsp");
+
 
         }catch (Exception e){
             System.out.println("Exception is "+e);
