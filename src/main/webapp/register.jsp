@@ -55,6 +55,20 @@
             </div>
             <button type="submit" class="btn" >Register</button>
         </form>
+
+        <%
+            String error = (String) session.getAttribute("Error");
+            if (error != null) {
+        %>
+
+        <script>
+            alert("<%= error %>");
+        </script>
+        <%
+                session.removeAttribute("Error");
+            }
+        %>
+
     </div>
 
     <footer style="background-color: #313131; color: #fff; padding: 20px 0;">

@@ -149,3 +149,21 @@ footer {
 footer a {
     color: #007c89;
 }
+
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer & Edge */
+}
+
+/* Prevent horizontal scrolling */
+html, body {
+    overflow-x: hidden; /* Hides horizontal scrollbar */
+    width: 100%;
+}

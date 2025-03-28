@@ -2,11 +2,7 @@ package RegistratiinForm;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 import DatabaseConnection.DatabaseConnection;
 import jakarta.servlet.RequestDispatcher;
@@ -15,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/registerUser")
 public class RegisterUser extends HttpServlet {
@@ -25,8 +22,11 @@ public class RegisterUser extends HttpServlet {
 		PrintWriter out = response.getWriter();
     
 		String fname = request.getParameter("firstName");
+		fname = fname.trim();
 		String lname = request.getParameter("lastName");
+		lname = lname.trim();
 		String email = request.getParameter("email");
+		email = email.trim();
 		String mobile = request.getParameter("mobile");
 		String gender = request.getParameter("gender");
 		String dateOfBirth = request.getParameter("dateOfBirth");
@@ -41,39 +41,61 @@ public class RegisterUser extends HttpServlet {
 		final String pass = "Tejas172304@";
 		final String username = "root";
 
+		boolean exists = false;
+
+		HttpSession session = request.getSession();
+
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			final Connection con = DriverManager.getConnection(url, username, pass);
+			PreparedStatement ps = null;
+			ResultSet rs = null;
 
 			if (con == null) {
 				System.out.print("Connection Failed....");
-			} else {
+			}
+			else {
 				System.out.print("Connection Created....");
-				PreparedStatement ps = con.prepareStatement("insert into new_user values(?,?,?,?,?,?,?)");
-				ps.setString(1, fname);
-				ps.setString(2, lname);
-				ps.setString(3, email);
-				ps.setString(4, mobile);
-				ps.setString(5, password);
-				ps.setString(6, gender);
-				ps.setString(7, dateOfBirth);
+				String query = "SELECT COUNT(*) FROM new_user WHERE emailID = ?";
+				ps = con.prepareStatement(query);
+				ps.setString(1, email);
+				rs = ps.executeQuery();
+				if (rs.next() && rs.getInt(1) > 0) {
+					exists = true;
+				}
 
-				int result = ps.executeUpdate();
+				if (exists){
+					session.setAttribute("Error", "Email Already Exists");
+					response.sendRedirect("register.jsp");
+				}
+				else {
+					ps = con.prepareStatement("insert into new_user values(?,?,?,?,?,?,?)");
+					ps.setString(1, fname);
+					ps.setString(2, lname);
+					ps.setString(3, email);
+					ps.setString(4, mobile);
+					ps.setString(5, password);
+					ps.setString(6, gender);
+					ps.setString(7, dateOfBirth);
 
-				if (result > 0) {
+					int result = ps.executeUpdate();
 
-					System.out.println("User Registered Successfully");
-					response.sendRedirect("/Railway_Reservation_System/index.jsp");
+					if (result > 0) {
 
-				} else {
-					/*response.setContentType("text/html");
-					out.print("<h3 style='color:Red'> User Register Failed  </h3>");*/
+						System.out.println("User Registered Successfully");
+						response.sendRedirect("/Railway_Reservation_System/index.jsp");
 
-					System.out.printf("User %s already exists.\n",fname);
-					response.sendRedirect("/railway_reservation_System/index.jsp");
+					}
+					/*else {
+					*//*response.setContentType("text/html");
+					out.print("<h3 style='color:Red'> User Register Failed  </h3>");*//*
+
+						System.out.printf("User %s already exists.\n",fname);
+						response.sendRedirect("/railway_reservation_System/index.jsp");
 //					RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
 //					rd.include(request, response);
+					}*/
 				}
 			}
 

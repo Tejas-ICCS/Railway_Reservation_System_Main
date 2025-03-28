@@ -33,3 +33,21 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: 5px auto;
 }
+
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer & Edge */
+}
+
+/* Prevent horizontal scrolling */
+html, body {
+    overflow-x: hidden; /* Hides horizontal scrollbar */
+    width: 100%;
+}
