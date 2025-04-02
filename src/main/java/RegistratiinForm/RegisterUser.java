@@ -33,9 +33,7 @@ public class RegisterUser extends HttpServlet {
 		String password = request.getParameter("pass");
 
 
-		final String url = "jdbc:mysql://localhost:3306/railway_reservation_system";
-		final String pass = "Tejas172304@";
-		final String username = "root";
+
 
 		boolean exists = false;
 
@@ -44,7 +42,8 @@ public class RegisterUser extends HttpServlet {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			final Connection con = DriverManager.getConnection(url, username, pass);
+			DatabaseConnection databaseConnection = new DatabaseConnection();
+			final Connection con = databaseConnection.getConnection();
 			PreparedStatement ps = null;
 			ResultSet rs = null;
 

@@ -5,6 +5,7 @@
   Time: 20:31
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page session="true" %>
 <%
      String user = (String) session.getAttribute("FirstName");
@@ -110,7 +111,7 @@
     %>
     <h2>Available Trains</h2>
     <table border="1" style="width: 100%">
-        <tr>
+        <tr style="background-color: lightskyblue;height: 50px;letter-spacing: 3px">
             <th>Train No</th>
             <th>Train Name</th>
             <th>From</th>
@@ -118,27 +119,31 @@
             <th>Departure Time</th>
             <th>Frequency</th>
             <th>Total Coach</th>
+            <th colspan="2">Actions</th>
 
         </tr>
         <% for (String[] train : trainList) { %>
         <tr>
-            <td><%= train[0] %></td>
+            <td style="font-weight: 700"><%= train[0] %></td>
             <td><%= train[1] %></td>
             <td><%= train[2] %></td>
             <td><%= train[3] %></td>
             <td><%= train[4] %></td>
             <td><%= train[5] %></td>
             <td><%= train[6] %></td>
-            <td><button style="background-color: orangered" class="btn3"><a>View</a></button></td>
-            <td><button style="background-color: green" class="btn3">Book</button></td>
+            <td><a href="showTrainDetails.jsp"><button style="background-color: orangered;width: 120px" name="<%= train[0] %>" class="btn3" >View</button></a></td>
+            <td><button style="background-color: green;width: 120px" class="btn3"  name="<%= train[0] %>">Book</button></td>
         </tr>
         <% } %>
     </table>
+
+
+
     <%
         // Clear train list after displaying results to prevent persistence on refresh
         session.removeAttribute("trainList");
     %>
-    <% } else if (request.getAttribute("trainList") != null) { %>
+    <% } else if (request.getAttribute("trainList") == null) { %>
     <p>No trains available for the selected route and date.</p>
     <% } %>
 

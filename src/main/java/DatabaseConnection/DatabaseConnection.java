@@ -6,9 +6,9 @@ import java.sql.DriverManager;
 public class DatabaseConnection {
 	private  Connection connection;
 	public DatabaseConnection() {
-		String url = "jdbc:mysql://localhost:3306/railway_reservation_system";
+		String url = "jdbc:mysql://localhost:3306/Railway_Reservation_System";
 		String password = "Tejas172304@";
-		String username = "root";
+		String username = "Tejas";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
