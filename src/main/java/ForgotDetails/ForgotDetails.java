@@ -70,7 +70,6 @@ public class ForgotDetails extends HttpServlet{
 					String subject = "Change Password ";
 					String from = "railway.reservationproject12@gmail.com";
 
-					Random random = new Random();
 					int otp = ThreadLocalRandom.current().nextInt(100000,1000000);
 					setOtp(otp);
 
@@ -99,7 +98,7 @@ public class ForgotDetails extends HttpServlet{
 					
 				}
 				else {
- 					response.sendRedirect("/login.jsp");
+ 					response.sendRedirect("/Railway_Reservation_System/login.jsp");
 				}
 				
 				
