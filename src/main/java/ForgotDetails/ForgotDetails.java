@@ -43,7 +43,7 @@ public class ForgotDetails extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		PrintWriter out = response.getWriter();
-		DatabaseConnection database = new DatabaseConnection();
+		DatabaseConnection database = DatabaseConnection.getInstance();
 		//Connection con = database.getDataBaseConnection();
 		Connection con = database.getConnection();
 		if(con == null ) {

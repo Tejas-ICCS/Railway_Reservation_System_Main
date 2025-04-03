@@ -43,7 +43,7 @@ public class submitOTP extends HttpServlet {
                 }
                 this.password = password.toString();
 
-                DatabaseConnection databaseConnection = new DatabaseConnection();
+                DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
                 Connection con =  databaseConnection.getConnection();
                 String emailId = forgotDetails.getEmailId();
                 String from = "railway.reservationproject12@gmail.com";

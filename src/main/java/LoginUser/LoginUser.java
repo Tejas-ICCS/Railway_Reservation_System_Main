@@ -24,7 +24,7 @@ public class LoginUser extends HttpServlet {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		 DatabaseConnection databaseConnection = new DatabaseConnection();
+		 DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
 		 Connection con = databaseConnection.getConnection();
 
         PreparedStatement ps = null;

@@ -42,7 +42,7 @@ public class RegisterUser extends HttpServlet {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			DatabaseConnection databaseConnection = new DatabaseConnection();
+			DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
 			final Connection con = databaseConnection.getConnection();
 			PreparedStatement ps = null;
 			ResultSet rs = null;

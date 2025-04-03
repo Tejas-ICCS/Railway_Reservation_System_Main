@@ -22,7 +22,7 @@ public class BookTickit extends HttpServlet {
         String to = request.getParameter("to");
         String date = request.getParameter("departure");
 
-        DatabaseConnection databaseConnection = new DatabaseConnection();
+        DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
         Connection con = databaseConnection.getConnection();
 
         List<String[]> trainList = new ArrayList<>();
