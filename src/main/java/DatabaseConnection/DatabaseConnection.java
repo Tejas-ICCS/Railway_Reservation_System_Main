@@ -56,9 +56,13 @@ public class DatabaseConnection {
 	private Connection connection;
 
 	// Database connection parameters
-	private static final String URL = "jdbc:mysql://localhost:3306/Railway_Reservation_System";
+//	private static final String URL = "jdbc:mysql://localhost:3306/Railway_Reservation_System";
+	private static final String URL = "jdbc:mysql://localhost:3306/Railway_Reservation_System?useSSL=false&serverTimezone=UTC";
+
+
 	private static final String USERNAME = "Tejas";
 	private static final String PASSWORD = "Tejas172304@";
+
 
 	// Step 2: Private constructor to prevent instantiation from outside
 	public DatabaseConnection() {
