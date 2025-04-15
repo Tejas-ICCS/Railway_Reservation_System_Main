@@ -1,0 +1,191 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+/*.nav{
+    height: 100px;
+    background-color: rgba(218, 218, 213, 0.676);
+
+}*/
+
+.nav{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #d6dce2;
+}
+
+.nav h2{
+    background-color: #d6dce2;
+
+}
+
+.nav2{
+    height: 40px;
+    display: flex;
+    justify-content: right;
+
+    align-items: center;
+    text-align: center;
+    background-color: #eeefef;
+}
+
+.nav2 i{
+    font-size: 30px;
+}
+
+.nav h2{
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 8px;
+    font-weight: 900;
+    font: bolder;
+    color: #3f4f5e ;
+}
+
+.nav1{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 90px;
+    background-color:#ecf5f5ba ;
+}
+
+.nav1 a{
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: #283747 ;
+}
+
+.nav1 a:active{
+    border-bottom: .5px solid #283747 ;
+    font-size: 30px ;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    transform: scale(0.8);
+    box-shadow: 0.5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav1 img{
+    width: 80px;
+    height: 80px;
+
+}
+
+
+.container{
+    position: relative;
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: blanchedalmond;
+}
+
+.btn1,.btn2,.btn3,.btn4{
+    width: 300px;
+    height: 70px;
+    margin: 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+.btn1:hover,.btn2:hover,.btn3:hover,.btn4:hover{
+    background-color: #4CAF50;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+
+}
+
+.AddTrain{
+    position: absolute;
+    margin-top: 300px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    border: none;
+    scroll-behavior: smooth;
+    scrollbar-color: red;
+}
+
+.AddTrain input{
+    width: 40%;
+    height: 40px;
+    font-size: 20px;
+    letter-spacing: 3px;
+    border: 1px solid gray;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.AddTrain h1,h2{
+    background-color: antiquewhite;
+    letter-spacing: 3px;
+}
+
+.AddTrain label{
+    letter-spacing: 3px;
+    font-size: 12px;
+}
+
+.sourceDetails{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+    text-align: center;
+}
+
+.sourceDetails input{
+    text-align: center;
+}
+
+.btn{
+    width: 100%;
+    margin:20px 0px 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.b1,.b2{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #4CAF50;
+    width: 250px;
+    height: 50px;
+    border: none;
+    letter-spacing: 5px;
+    border-radius: 8px;
+}
+
+.b2{
+    background-color: rgb(194, 33, 33);
+}
+
+.day,.day1{
+    display: flex;
+    margin-top: 30px;
+    padding-left: 400px;
+    padding-right: 400px;
+    justify-content:space-between;
+    align-items: center;
+}
+
+
+.day input{
+    height: 15px;
+}
+
+.day1{
+    padding-left: 420px;
+    padding-right: 420px;
+}

@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="agent_Login.css">
 </head>
 <body> 
-    <form action="LoginUser" method="get">
+    <form action="LoginAdmin" method="post">
       <div class="container">
         <div class="login-box">
             <h1>Agent Log in</h1>
             <p id="tag">You Are An User ? <a href="login.html">User Login</a></p>
-            <form>
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
                 
@@ -28,13 +27,25 @@
                 </div>
                 
                 <button type="submit" class="login-btn">Log in</button>
+
+            <%
+                String error = (String) session.getAttribute("Adminerror");
+                if (error != null) {
+            %>
+
+            <script>
+                alert("<%= error %>");
+            </script>
+            <%
+                    session.removeAttribute("error");
+                }
+            %>
                 
                 <div class="help-links">
                     <a href="#">Forgot password?</a>
                     <a href="#">Can't log in?</a>
                     <a href="index.html">Home</a>
                 </div>
-            </form>
         </div>
     </div>
     </form>

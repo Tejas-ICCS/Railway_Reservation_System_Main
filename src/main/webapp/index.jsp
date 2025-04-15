@@ -1,6 +1,7 @@
 <%@ page session="true" %>
 <%
     String user = (String) session.getAttribute("FirstName");
+    String admin = (String) session.getAttribute("adminName");
 %>
 
 <!DOCTYPE html>
@@ -22,27 +23,40 @@
             <% if(user != null) {%>
             <h4 style="text-align: right;"><i class='bx bx-user'></i> Welcome,  <%= user %> &emsp; </h4>
             <a href="logout.jsp"><i class='bx bx-log-out'></i></a>
-            <%}else {%>
+            <%}else if(admin != null) {%>
+            <h4 style="text-align: right;"><i class='bx bx-user'></i> Welcome,  <%= admin %> &emsp; </h4>
+            <a href="logout.jsp"><i class='bx bx-log-out'></i></a>
+            <%}else{%>
             <h4 style="text-align: right;"><i class='bx bx-user'></i> Welcome, Guest! </h4>
             <%}%>
+
+
 <%--            <i class='bx bx-log-out'><a href="logout.jsp"></a></i>--%>
         </div>
         <div class="nav1">
             <img src="Image/logo.png" alt="Railway logo">
             <a href="index.jsp" target="_parent">HOME</a>
-            <% if(user == null) {%>
+            <% if(user == null && admin ==null ) {%>
+                <a href="login.jsp">USER LOGIN</a>
+                <a href="agent.jsp">AGENT LOGIN</a>
+            <%}else if(admin == null && user!=null){%>
                 <a href="login.jsp">USER LOGIN</a>
                 <a href="agent.jsp">AGENT LOGIN</a>
             <%}%>
 
 
-
-
-<%--            <a href="submitOtp.jsp">Submit OTP</a>--%>
+            <% if(admin==null){%>
             <a href="register.jsp">REGISTER</a>
+            <%}%>
+<%--            <a href="submitOtp.jsp">Submit OTP</a>--%>
+
             <a href="train-schedule.jsp">TRAIN SCHEDULE</a>
             <a href="contact.jsp">CONTACT US</a>
             <a href="help.jsp">HELP & SUPPORT</a>
+
+            <% if(admin!=null){%>
+            <a href="adminPage.jsp">ADMIN PAGE</a>
+            <%}%>
         </div>
     </header>
 
@@ -51,9 +65,12 @@
         <br>
         <h3 id="mh3">Welcome to Railway Reservation System</h3>
         <br>
+
+        <% if(admin == null){%>
         <span>BOOK YOUR TICKETS HERE</span>
         <br><br>
         <a href="Booking.jsp"><button class="btn" >BOOK TICKET</button></a>
+        <%}%>
     </div>
 
     <div class="main1">
@@ -140,11 +157,11 @@
               <div style="max-width: 200px;">
                 <h4>Quick Links</h4>
                 <ul style="list-style-type: none; padding: 0;">
-                  <li><a href="index.html" style="color: #fff; text-decoration: none;">Home</a></li>
-                  <li><a href="book.html" style="color: #fff; text-decoration: none;">Book Ticket</a></li>
+                  <li><a href="index.jsp" style="color: #fff; text-decoration: none;">Home</a></li>
+                  <li><a href="Booking.jsp" style="color: #fff; text-decoration: none;">Book Ticket</a></li>
                   <li><a href="train-schedule.html" style="color: #fff; text-decoration: none;">Train Schedule</a></li>
-                  <li><a href="contact.html" style="color: #fff; text-decoration: none;">Contact Us</a></li>
-                  <li><a href="help.html" style="color: #fff; text-decoration: none;">FAQs</a></li>
+                  <li><a href="contact.jsp" style="color: #fff; text-decoration: none;">Contact Us</a></li>
+                  <li><a href="help.jsp" style="color: #fff; text-decoration: none;">FAQs</a></li>
                 </ul>
               </div>
           

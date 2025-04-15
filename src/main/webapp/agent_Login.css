@@ -51,7 +51,8 @@ h1 {
 
 #tag {
     font-size: 14px;
-    color: #fafafa;
+    /*color: #fafafa;*/
+    color: black;
     margin-bottom: 20px;
 }
 
