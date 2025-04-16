@@ -2,6 +2,8 @@
 <%
     String user = (String) session.getAttribute("FirstName");
     String admin = (String) session.getAttribute("adminName");
+    String addTrain = (String) session.getAttribute("addTrainError");
+    String trainmsg = (String) session.getAttribute("trainAdd");
 %>
 
 
@@ -15,6 +17,27 @@
     <link rel="stylesheet" href="AdminPagestyle.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+<script>
+    function generateStops() {
+        let stops = document.getElementById("stops").value;
+        let container = document.getElementById("stationDetails");
+        container.innerHTML = ""; // Clear previous entries
+
+        for (let i = 1; i <= stops; i++) {
+            container.innerHTML += `
+                    <h3>Stop ${i}</h3>
+                    <label>STATION CODE</label><br>
+                    <input type="text" name="stationCode${i}" required><br>
+                    <label>STATION NAME</label><br>
+                    <input type="text" name="stationName${i}" required><br>
+                    <label>ARRIVAL TIME</label><br>
+                    <input type="time" name="arrival${i}"><br>
+                    <label>DEPARTURE TIME</label><br>
+                    <input type="time" name="departure${i}"><br><br>
+                `;
+        }
+    }
+</script>
 <body>
 <div class="nav">
     <h2>Railway Reservation System</h2>
@@ -60,22 +83,22 @@
 </div>
 
 <div class="container">
-    <button type="submit" popovertarget="AddTrain" class="btn1">Add Train</button>
-    <button type="submit" popovertarget="cancleTrain" class="btn2">Cancle Train</button>
-    <button type="submit" popovertarget="UpdateTrain" class="btn3">Update Train</button>
-    <button type="submit" popovertarget="DeleteTrain" class="btn4">Delete Train</button>
+    <button type="submit" popovertarget="AddTrain" class="btn btn-1">Add Train</button>
+    <button type="submit" popovertarget="cancleTrain" class="btn btn-2">Cancle Train</button>
+    <button type="submit" popovertarget="UpdateTrain" class="btn btn-3">Update Train</button>
+    <button type="submit" popovertarget="DeleteTrain" class="btn btn-4">Delete Train</button>
 
 
     <div popover id="AddTrain" class="AddTrain">
         <h1>ADD TRAIN</h1>
-        <form action="" method="post">
+        <form action="AddTrain" method="post">
             <label for="add1">Train Number</label>
             <br>
             <input type="text" name="TrainNo" id="add1" maxlength="6" required>
             <br>
             <label for="add2">Train Name</label>
             <br>
-            <input type="text" name="trainName" required id="add2">
+            <input type="text" name="TrainName" required id="add2">
             <br>
             <h2>ROUTE DETAILS</h2>
             <!-- <br> -->
@@ -89,26 +112,16 @@
                 <!-- <label for="dest">DESTINATION</label> -->
                 <br>
                 <input type="text" name="destination" placeholder="DESTINATION" required id="dest">
+                <br>
+                <input type="text" name="coach" placeholder="Total Coach" required id="coach">
+                <br>
+                <input type="time" name="departure" placeholder="Departure Time" required id="departure">
             </div>
             <br>
             <input type="number" name="stops" id="stops"  placeholder="Total NO. OF STOPS" style="text-align: center;width: 300px;">
             <br><br>
-            <label for="code">STATION CODE</label>
-            <br>
-            <input type="text" name="stationCode" required id="code">
-            <br>
-            <label for="name">STATION NAME</label>
-            <br>
-            <input type="text" name="stationName" required id="name">
-            <br>
-            <label for="t1">ARRIVAL TIME</label>
-            <br>
-            <input type="time" name="arrival" id="t1">
-            <br>
-            <label for="t2">DEPATURE TIME</label>
-            <br>
-            <input type="time" name="departure" id="t2">
-            <br>
+            <button type="button" class="btn-generate" onclick="generateStops()">Generate</button>
+            <div id="stationDetails"></div>
 
             <!-- Train Frequency  -->
             <h2>Train Frequency</h2>
@@ -137,6 +150,15 @@
             <div class="btn">
                 <button type="submit" class="b1">ADD</button>
                 <button type="reset" class="b2">RESET</button>
+                <%if(trainmsg != null){%>
+                <script>
+                    alert(<%= trainmsg %>);
+                </script>
+                <%}else{%>
+                <script>
+                    alert("Train Added  Successfully.");
+                </script>
+                <%}%>
             </div>
         </form>
     </div>

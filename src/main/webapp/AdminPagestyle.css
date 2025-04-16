@@ -87,7 +87,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    background-color: blanchedalmond;
+    /*background-color: blanchedalmond;*/
 }
 
 .btn1,.btn2,.btn3,.btn4{
@@ -141,12 +141,13 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content:space-evenly;
+    justify-content:space-around;
     text-align: center;
 }
 
 .sourceDetails input{
     text-align: center;
+    margin: 20px;
 }
 
 .btn{
@@ -188,4 +189,57 @@
 .day1{
     padding-left: 420px;
     padding-right: 420px;
+}
+
+
+
+.btn {
+    color: white;
+    height: 40px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-1 {
+    background: linear-gradient(to right, #ff416c, #ff4b2b); /* pink-orange */
+}
+
+.btn-2 {
+    background: linear-gradient(to right, #36d1dc, #5b86e5); /* teal-blue */
+}
+
+.btn-3 {
+    background: linear-gradient(to right, #f7971e, #ffd200); /* orange-yellow */
+}
+
+.btn-4 {
+    background: linear-gradient(to right, #8e2de2, #4a00e0); /* purple-indigo */
+}
+
+
+.btn-generate {
+    background: linear-gradient(to right, #ff9966, #ff5e62); /* Coral to Sunset Red */
+    color: white;
+    width: 150px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px;
+}
+
+.btn-generate:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 94, 98, 0.4);
 }
