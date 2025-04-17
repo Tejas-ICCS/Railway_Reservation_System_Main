@@ -1,0 +1,216 @@
+.nav{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(172, 174, 177, 0.78);
+}
+
+
+.nav1{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 90px;
+    background-color:#d6dce2 ;
+    margin: 0px;
+    padding: 0%;
+}
+
+.nav2{
+    height: 40px;
+    display: flex;
+    justify-content: right;
+
+    align-items: center;
+    text-align: center;
+    background-color: #eeefef;
+}
+
+
+.container{
+    background-image: none;
+    /*background-color: #d4efe4;*/
+    background-image: linear-gradient(to top, #f4db79 0%, #e4e4e4 100%);
+    height: auto;
+}
+
+.nav1 a{
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: #283747 ;
+}
+
+.nav1 a:active{
+    border-bottom: .5px solid #283747 ;
+    font-size: 30px ;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    transform: scale(0.8);
+    box-shadow: 0.5px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav1 img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.nav a{
+    text-decoration: none;
+    margin: 0px 20px 0px 20px;
+    letter-spacing: 2px;
+
+}
+
+.passengerDetails{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+
+    /* background-color: #283747; */
+
+}
+
+.passengerDetails h2{
+    letter-spacing: 2px;
+}
+
+.passengerDetails h2,.passengerDetails input , .passengerDetails button{
+    margin: 0px 20px 0px 0px;
+
+}
+
+.passengerDetails input{
+    width: 200px;
+    height: 55px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ababab6f;
+    background-size: 300% 300%;
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.search-button {
+
+
+    height: 55px;
+    width: 200px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff6ec4, #7873f5, #00c9ff, #92fe9d);
+    background-size: 300% 300%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: gradientMove 5s ease infinite;
+}
+
+
+.search-button:hover {
+    transform: scale(1.05);
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.payment{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.payment button{
+    height: 55px;
+    width: 200px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b, #ff9068);
+    background-size: 300% 300%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: gradientFlow 5s ease infinite;
+}
+
+.payment button:hover {
+    transform: scale(1.05);
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+.container h1{
+    font-weight: 600;
+    color: #1b2530;
+    text-align: center;
+    letter-spacing: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+.bordingDetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    margin-top: 50px;
+}
+
+.bordingDetails h3{
+    letter-spacing: 3px;
+    font-size: larger;
+}
+
+.bordingDetails .bording{
+    margin-left: 50px;
+    width: 400px;
+    height: 50px;
+    background-color: #00c9ff;
+    border: none;
+    border-radius: 10px;
+}
+
+#details input{
+    font-size: 20px;
+    letter-spacing: 2px;
+}
