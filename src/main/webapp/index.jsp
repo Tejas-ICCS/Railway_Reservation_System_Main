@@ -76,6 +76,7 @@
             <% } %>
 
             <a href="train-schedule.jsp">TRAIN SCHEDULE</a>
+            <a href="payment.jsp"><PAYMENT></PAYMENT></a>
             <a href="contact.jsp">CONTACT US</a>
             <a href="help.jsp">HELP & SUPPORT</a>
         </div>

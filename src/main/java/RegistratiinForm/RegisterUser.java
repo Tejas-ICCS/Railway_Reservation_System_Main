@@ -66,7 +66,7 @@ public class RegisterUser extends HttpServlet {
 					response.sendRedirect("register.jsp");
 				}
 				else {
-					ps = con.prepareStatement("insert into new_user values(?,?,?,?,?,?,?)");
+					ps = con.prepareStatement("insert into new_user values(?,?,?,?,?,?,?,?)");
 					ps.setString(1, fname);
 					ps.setString(2, lname);
 					ps.setString(3, email);
@@ -74,6 +74,7 @@ public class RegisterUser extends HttpServlet {
 					ps.setString(5, password);
 					ps.setString(6, gender);
 					ps.setString(7, dateOfBirth);
+					ps.setString(8,"demo_admin");
 
 					int result = ps.executeUpdate();
 

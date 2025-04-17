@@ -57,12 +57,12 @@ public class AddTrain extends HttpServlet {
             }
 
 
-            String select = "select train_no from train where train_no = ?";
+            String select = "select train_no from Train where train_no = ?";
 
             String selectedDays = days.toString(); // Final result
 
-            String insertTrain = "insert into train(train_no, train_name, train_source, " +
-                    "train_destination, train_time, train_frequency, total_coach) values(?,?,?,?,?,?,?)";
+            String insertTrain = "insert into Train(train_no, train_name, train_source, " +
+                    "train_destination, train_time, train_frequency, total_coach,username) values(?,?,?,?,?,?,?,?)";
 
             DatabaseConnection db = DatabaseConnection.getInstance();
             Connection con = db.getConnection();
@@ -90,6 +90,7 @@ public class AddTrain extends HttpServlet {
                     ps.setString(5,trainTime);
                     ps.setString(6,selectedDays);
                     ps.setInt(7,Integer.valueOf(coach));
+                    ps.setString(8,"demo_admin");
 
                     int row = ps.executeUpdate();
                     if(row>0){
