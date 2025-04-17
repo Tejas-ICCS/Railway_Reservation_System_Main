@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context docBase="/home/tejas/Desktop/Railway_Reservation_System/src/main/webapp">
+  <Resources cacheMaxSize="10240">
+    <PreResources base="/home/tejas/Desktop/Railway_Reservation_System/target/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
+    <PostResources base="/home/tejas/.m2/repository/javax/mail/mail/1.4.7/mail-1.4.7.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/mail-1.4.7.jar"/>
+    <PostResources base="/home/tejas/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/activation-1.1.jar"/>
+    <PostResources base="/home/tejas/.m2/repository/org/springframework/spring-web/6.2.2/spring-web-6.2.2.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/spring-web-6.2.2.jar"/>
+    <PostResources base="/home/tejas/.m2/repository/org/springframework/spring-beans/6.2.2/spring-beans-6.2.2.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/spring-beans-6.2.2.jar"/>
+    <PostResources base="/home/tejas/.m2/repository/org/springframework/spring-core/6.2.2/spring-core-6.2.2.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/spring-core-6.2.2.jar"/>
+    <PostResources base="/home/tejas/.m2/repository/org/springframework/spring-jcl/6.2.2/spring-jcl-6.2.2.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/spring-jcl-6.2.2.jar"/>
+    <PostResources base="/home/tejas/.m2/repository/io/micrometer/micrometer-observation/1.14.3/micrometer-observation-1.14.3.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/micrometer-observation-1.14.3.jar"/>
+    <PostResources base="/home/tejas/.m2/repository/io/micrometer/micrometer-commons/1.14.3/micrometer-commons-1.14.3.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/micrometer-commons-1.14.3.jar"/>
+    <PostResources base="/home/tejas/.m2/repository/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/mysql-connector-java-8.0.28.jar"/>
+    <PostResources base="/home/tejas/.m2/repository/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/protobuf-java-3.11.4.jar"/>
+    <PostResources base="/home/tejas/Documents/mysql-connector-j-9.2.0/mysql-connector-j-9.2.0.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/mysql-connector-j-9.2.0.jar"/>
+  </Resources>
+</Context>
