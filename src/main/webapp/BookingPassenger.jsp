@@ -23,50 +23,59 @@
     function generatePassenger() {
         let passenger = document.getElementById("passenger").value;
         let container = document.getElementById("details");
+        let payment = document.getElementById("payment");
         container.innerHTML = ""; // Clear previous entries
 
         // Create table structure
-        let table = `
-            <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
-                <thead>
-                    <tr style="background-color:lightblue;text-align:center;height:40px;letter-spacing:4px">
-                        <th>Passenger No</th>
-                        <th>Passenger Name</th>
-                        <th>Passenger Age</th>
-                        <th>Passenger Gender</th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
-
-        for (let i = 1; i <= passenger; i++) {
-            table += `
-                <tr style="height:60px">
-                    <td style="text-align:center;font-weight:700">Passenger ${i}</td>
-                    <td style="text-align:center;">
-                        <input type="text" name="passengerName${i}" style="text-align:center;width:95%;height:50px;border-radius:10px;border:none;background-color:#d6dce2" required>
-                    </td>
-                    <td style="text-align:center;">
-                        <input type="number" name="passengerAge${i}" min="1" required style="text-align:center;width:95%;height:50px;border-radius:10px;border:none;background-color:#d6dce2"">
-                    </td>
-                    <td style="text-align:center;" colspan=2>
-                        <input type="radio" name="gender${i}" value="Male" id="male${i}" required>
-                        <label for="male${i}" >Male</label>
-                        <input type="radio" name="gender${i}" value="Female" id="female${i}" required>
-                        <label for="female${i}">Female</label>
-                    </td>
-                </tr>
-            `;
+        if (passenger == "") {
+            alert("Total Number Of Passenger are Empty");
         }
+        else if (passenger > 0) {
+            let table = `
+        <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+                <tr style="background-color:lightblue;text-align:center;height:40px;letter-spacing:4px">
+                    <th>Passenger No</th>
+                    <th>Passenger Name</th>
+                    <th>Passenger Age</th>
+                    <th>Passenger Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
 
-        table += `
-                </tbody>
-            </table>
-            <br>
+            for (let i = 1; i <= passenger; i++) {
+                table += `
+            <tr style="height:60px">
+                <td style="text-align:center;font-weight:700">Passenger ${i}</td>
+                <td style="text-align:center;">
+                    <input type="text" name="passengerName${i}" style="text-align:center;width:95%;height:50px;border-radius:10px;border:none;background-color:#d6dce2" required>
+                </td>
+                <td style="text-align:center;">
+                    <input type="number" name="passengerAge${i}" min="1" required style="text-align:center;width:95%;height:50px;border-radius:10px;border:none;background-color:#d6dce2">
+                </td>
+                <td style="text-align:center;" colspan=2>
+                    <input type="radio" name="gender${i}" value="Male" id="male${i}" required>
+                    <label for="male${i}">Male</label>
+                    <input type="radio" name="gender${i}" value="Female" id="female${i}" required>
+                    <label for="female${i}">Female</label>
+                </td>
+            </tr>
         `;
+            }
 
-        container.innerHTML = table;
-    }
+            table += `
+            </tbody>
+        </table>
+        <br>
+    `;
+
+            container.innerHTML = table;
+            payment.innerHTML =  '<a href="payment.jsp"><button>Make Payment</button></a>';
+        } else {
+            alert("Enter Passenger Values more than 0");
+        }}
+
 </script>
 
 
@@ -120,7 +129,7 @@
 <div class="passengerDetails">
     <h2>Total Number Of Passenger's</h2>
     <br>
-    <input type="number" name="totalPassenger" min="1" max="5" id="passenger">
+    <input type="number" name="totalPassenger" min="1" max="5" id="passenger" required>
 
     <br><br><br>
 </div>
@@ -130,8 +139,8 @@
 <div id="details"></div>
 
 <!-- if the total no of passsenger is > 1 then display -->
-<div class="payment">
-    <a href="payment.jsp"><button>Book Tickit</button></a>
+<div class="payment" id="payment">
+
 </div>
 
 <footer style="background-color: #313131; color: #fff; padding: 20px 0;">
