@@ -57,29 +57,32 @@ public class AddTrain extends HttpServlet {
             }
 
 
-            String select = "select train_no from Train where train_no = ?";
+            String select = "select train_no from Train where train_no = "+Integer.parseInt(trainNo);
 
             String selectedDays = days.toString(); // Final result
 
             String insertTrain = "insert into Train(train_no, train_name, train_source, " +
                     "train_destination, train_time, train_frequency, total_coach,username) values(?,?,?,?,?,?,?,?)";
 
+            String routeInsert = "";
+
             DatabaseConnection db = DatabaseConnection.getInstance();
             Connection con = db.getConnection();
             PreparedStatement ps = null;
+            Statement stmt = null;
 
             try {
-                ps = con.prepareStatement(select);
-                ps.setString(1, trainNo);
-//                ps.executeUpdate();
+                stmt = con.createStatement();
                 int temp = 0;
-                ResultSet rs = ps.executeQuery();
+                ResultSet rs =stmt.executeQuery(select);
                 while (rs.next()) {
+
                     temp = rs.getInt("train_no");
                 }
 
-                if (temp>=0){
-                    session.setAttribute("trainAdd", "Train already exists");
+                if (temp==Integer.parseInt(trainNo)){
+                    session.setAttribute("trainmsg", "Train already exists");
+                    response.sendRedirect("/Railway_Reservation_System/adminPage.jsp");
                 }
                 else{
                     ps = con.prepareStatement(insertTrain);
@@ -89,17 +92,18 @@ public class AddTrain extends HttpServlet {
                     ps.setString(4,destination);
                     ps.setString(5,trainTime);
                     ps.setString(6,selectedDays);
-                    ps.setInt(7,Integer.valueOf(coach));
+                    ps.setInt(7,Integer.parseInt(coach));
                     ps.setString(8,"demo_admin");
 
                     int row = ps.executeUpdate();
                     if(row>0){
                         System.out.println("Inserted Train");
-                        response.sendRedirect("/adminPage.jsp");
+                        session.setAttribute("trainmsg", "Train added Successfully");
+                        response.sendRedirect("/Railway_Reservation_System/adminPage.jsp");
                     }
                     else{
-                        session.setAttribute("addTrainError", "Something went wrong");
-                        response.sendRedirect("/adminPage.jsp");
+                        session.setAttribute("trainmsg", "Something went wrong");
+                        response.sendRedirect("/Railway_Reservation_System/adminPage.jsp");
                     }
                 }
 

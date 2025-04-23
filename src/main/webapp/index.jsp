@@ -66,7 +66,7 @@
             <%-- Show login/register links only if no user or admin is logged in --%>
             <% if (user == null && admin == null) { %>
             <a href="login.jsp">USER LOGIN</a>
-            <a href="agent.jsp">AGENT LOGIN</a>
+            <a href="agent.jsp">ADMIN LOGIN</a>
             <a href="register.jsp">REGISTER</a>
             <% } %>
 

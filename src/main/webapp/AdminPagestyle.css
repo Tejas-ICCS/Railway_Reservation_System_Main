@@ -181,6 +181,12 @@
     align-items: center;
 }
 
+/*
+#stationDetails{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}*/
 
 .day input{
     height: 15px;

@@ -2,8 +2,12 @@
 <%
     String user = (String) session.getAttribute("FirstName");
     String admin = (String) session.getAttribute("adminName");
-    String addTrain = (String) session.getAttribute("addTrainError");
-    String trainmsg = (String) session.getAttribute("trainAdd");
+//    String addTrain = (String) session.getAttribute("addTrainError");
+    String trainmsg = (String) session.getAttribute("trainmsg");
+%>
+
+<%
+
 %>
 
 
@@ -33,7 +37,9 @@
                     <label>ARRIVAL TIME</label><br>
                     <input type="time" name="arrival${i}"><br>
                     <label>DEPARTURE TIME</label><br>
-                    <input type="time" name="departure${i}"><br><br>
+                    <input type="time" name="departure${i}"><br>
+                    <label>PLATFORM NUMBER</label><br>
+                    <input type="number" name="platform${i}"><br><br>
                 `;
         }
     }
@@ -86,7 +92,7 @@
     <button type="submit" popovertarget="AddTrain" class="btn btn-1">Add Train</button>
     <button type="submit" popovertarget="cancleTrain" class="btn btn-2">Cancle Train</button>
     <button type="submit" popovertarget="UpdateTrain" class="btn btn-3">Update Train</button>
-    <button type="submit" popovertarget="DeleteTrain" class="btn btn-4">Delete Train</button>
+<%--    <button type="submit" popovertarget="DeleteTrain" class="btn btn-4">Delete Train</button>--%>
 
 
     <div popover id="AddTrain" class="AddTrain">
@@ -150,15 +156,18 @@
             <div class="btn">
                 <button type="submit" class="b1">ADD</button>
                 <button type="reset" class="b2">RESET</button>
-                <%if(trainmsg != null){%>
+                <%
+//                    String trainmsg = (String) session.getAttribute("trainmsg");
+                    if (trainmsg != null) {
+                %>
+
                 <script>
-                    alert(<%= trainmsg %>);
+                    alert("<%= trainmsg %>");
                 </script>
-                <%}else{%>
-                <script>
-                    alert("Train Added  Successfully.");
-                </script>
-                <%}%>
+                <%
+                        session.removeAttribute("error");
+                    }
+                %>
             </div>
         </form>
     </div>
