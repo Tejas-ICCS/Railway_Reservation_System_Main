@@ -1,0 +1,49 @@
+select * from train_cancellations;
+select * from train t ;
+delete from train_cancellations;
+update train set is_cancelled =false where train_no = 101001;
+
+CREATE TABLE train_cancellations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    train_no INT NOT NULL,
+    reason TEXT,
+    FOREIGN KEY (train_no) REFERENCES train(train_no) ON DELETE cascade,
+    cancelled_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+
+
+alter table train add column total_seats int;
+ALTER TABLE train ADD COLUMN is_cancelled BOOLEAN DEFAULT FALSE;
+
+UPDATE train t  SET t.total_coach = 16;
+
+INSERT INTO route (train_no, station_code, arrival_time, departure_time, distance_km, platform_no, stop_number) VALUES
+(100101, 'NDLS', '16:30:00', '16:40:00', 0, 1, 1),
+(100101, 'AGC', '19:10:00', '19:15:00', 195, 2, 2),
+(100101, 'JP', '23:50:00', '23:55:00', 461, 3, 3),
+(100101, 'BCT', '08:15:00', NULL, 1386, 4, 4),
+(100102, 'BCT', '07:00:00', '07:05:00', 0, 1, 1),
+(100102, 'LNL', '08:45:00', '08:50:00', 128, 2, 2),
+(100102, 'PUNE', '10:30:00', NULL, 192, 3, 3),
+(100103, 'BCT', '23:30:00', '23:40:00', 0, 1, 1),
+(100103, 'GOA', '08:10:00', NULL, 579, 2, 2),
+(100104, 'MAS', '22:00:00', '22:10:00', 0, 1, 1),
+(100104, 'SBC', '05:30:00', NULL, 362, 2, 2),
+(100105, 'NDLS', '06:00:00', '06:10:00', 0, 1, 1),
+(100105, 'AGC', '08:15:00', NULL, 200, 2, 2),
+(100106, 'BCT', '20:00:00', '20:10:00', 0, 1, 1),
+(100106, 'MAS', '10:15:00', NULL, 1275, 2, 2),
+(100107, 'BCT', '17:00:00', '17:10:00', 0, 1, 1),
+(100107, 'JP', '08:50:00', NULL, 1160, 2, 2),
+(100108, 'BCT', '15:30:00', '15:40:00', 0, 1, 1),
+(100108, 'HWH', '10:30:00', NULL, 1952, 2, 2),
+(100109, 'BCT', '22:15:00', '22:25:00', 0, 1, 1),
+(100109, 'PUNE', '01:00:00', NULL, 192, 2, 2),
+(100110, 'BCT', '21:30:00', '21:40:00', 0, 1, 1),
+(100110, 'NDLS', '11:10:00', NULL, 1386, 2, 2);
+
+
+alter table route drop column stop;
+
+select * from route r ;
+
+select * from train;
