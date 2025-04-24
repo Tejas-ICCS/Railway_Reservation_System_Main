@@ -21,7 +21,7 @@ public class VerifyTrainServlet extends HttpServlet {
         try {
             DatabaseConnection db = DatabaseConnection.getInstance();
             Connection con = db.getConnection();
-            String query = "SELECT * FROM train WHERE train_no = ? and is_cancelled= 'false'";
+            String query = "SELECT * FROM Train WHERE train_no = ? and is_cancelled= 'false'";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, trainNo);
             ResultSet rs = ps.executeQuery();

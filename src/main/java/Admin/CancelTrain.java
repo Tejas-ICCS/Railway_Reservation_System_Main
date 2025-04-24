@@ -32,7 +32,7 @@ public class CancelTrain extends HttpServlet {
             Statement stmt = null;
             PreparedStatement ps = null;
             HttpSession session = request.getSession();
-            String selectTrain = "SELECT * FROM train WHERE train_no = " + trainNo +" AND is_cancelled= 'false'";
+            String selectTrain = "SELECT * FROM Train WHERE train_no = " + trainNo +" AND is_cancelled= 'false'";
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(selectTrain);
             if(rs.next()){
@@ -52,7 +52,7 @@ public class CancelTrain extends HttpServlet {
                     response.sendRedirect("/Railway_Reservation_System//adminPage.jsp");
                 }
 
-                String updateTrain = "UPDATE train SET is_cancelled = TRUE WHERE train_no = ?";
+                String updateTrain = "UPDATE Train SET is_cancelled = TRUE WHERE train_no = ?";
                 ps = con.prepareStatement(updateTrain);
                 ps.setString(1, trainNo);
                 row = ps.executeUpdate();
