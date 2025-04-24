@@ -19,7 +19,7 @@
             <h2>Railway Reservation System</h2>
         </div>
     
-        <!-- <div class="nav2">
+         <div class="nav2">
             <% if(user != null) {%>
             <h4 style="text-align: right;"><i class='bx bx-user'></i> Welcome,  <%= user %> &emsp; </h4>
             <a href="logout.jsp"><i class='bx bx-log-out'></i></a>
@@ -32,15 +32,24 @@
     
     
             <%--            <i class='bx bx-log-out'><a href="logout.jsp"></a></i>--%>
-        </div> -->
+        </div>
         <div class="nav1">
-            <img src="Image/railway_Logo.png" alt="Railway logo">
+            <img src="Image/logo.png" alt="Railway logo">
             <a href="index.jsp" target="_parent">HOME</a>
-            <a href="login.jsp">LOGIN</a>
-            <!-- <a href="agent.jsp">AGENT LOGIN</a> -->
-    
+            <%-- Show login/register links only if no user or admin is logged in --%>
+            <% if (user == null && admin == null) { %>
+            <a href="login.jsp">USER LOGIN</a>
+            <a href="agent.jsp">ADMIN LOGIN</a>
             <a href="register.jsp">REGISTER</a>
-            <!-- <a href="train-schedule.jsp">TRAIN SCHEDULE</a> -->
+            <% } %>
+
+            <%-- Show ADMIN PAGE only if admin is logged in --%>
+            <% if (admin != null) { %>
+            <a href="adminPage.jsp">ADMIN PAGE</a>
+            <% } %>
+
+<%--            <a href="Train_Schedule.jsp">TRAIN SCHEDULE</a>--%>
+            <a href="payment.jsp"><PAYMENT></PAYMENT></a>
             <a href="contact.jsp">CONTACT US</a>
             <a href="help.jsp">HELP & SUPPORT</a>
         </div>

@@ -249,3 +249,110 @@
     transform: scale(1.05);
     box-shadow: 0 4px 15px rgba(255, 94, 98, 0.4);
 }
+
+
+/*cancle train*/
+
+#cancleTrain input{
+    width: 300px;
+    height: 40px;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+#cancleTrain textarea{
+    width: 500px;
+    height: 150px;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 5px;
+}
+
+#cancleTrain{
+    /* background-color: bisque; */
+    /*width: 50%;
+    height: 400px;
+    margin-left: 430px;
+    margin-top: 30px;*/
+    position: absolute;
+    margin-top: 300px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    border: none;
+    scroll-behavior: smooth;
+}
+
+/*
+button{
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 5px ;
+}
+*/
+
+.cancle1 .btn2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+    margin-top: 40px    ;
+}
+
+
+textarea {
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.btn22 {
+    background: linear-gradient(to right, #ff9966, #ff5e62); /* Coral to Sunset Red */
+    color: white;
+    width: 200px;
+    height: 40px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px;
+}
+
+.btn22:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 94, 98, 0.4);
+}
+
+
+.btn11{
+    background: linear-gradient(to right, #a1ff66, #5eff7e,#11a72f); /* Coral to Sunset Red */
+    color: white;
+    width: 200px;
+    height: 40px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px;
+}
+
+.btn11:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(94, 255, 137, 0.4);
+}
+
+
+body{
+    /*background-color:rgba(5, 113, 59, 0.112) ;*/
+}
+
+.trainDetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

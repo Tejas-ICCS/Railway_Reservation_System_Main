@@ -12,9 +12,9 @@
     </header>
     <div class="main">
         <div class="container">
-            <form action="submitPayment">
+            <form action="submitPayment" method="POST">
                 <h3>Card Holder Name</h3>
-                <input type="text" name="CardHolderName" class="card" required>
+                <input type="text" name="cardHolderName" class="card" required>
                 <h3>Card Number</h3>
                 <input type="text" name="cardNumber" id="cardNumber" class="card" required maxlength="19" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(.{4})/g, '$1 ').trim()" placeholder="XXXX XXXX XXXX XXXX">
                 <h3>Expiry Date</h3>
@@ -58,6 +58,10 @@
 
                 if (--timer < 0) {
                     timer = 0; // Prevent negative countdown
+                    window.location.href = "BookingPassenger.jsp";
+                    <%
+                        session.setAttribute("payment","Payment Time Ends\nTry Again...");
+                    %>
                 }
             }, 1000);
         }

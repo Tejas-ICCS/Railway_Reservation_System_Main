@@ -10,8 +10,8 @@
     <form action="LoginAdmin" method="post">
       <div class="container">
         <div class="login-box">
-            <h1>Agent Log in</h1>
-            <p id="tag">You Are An User ? <a href="login.html">User Login</a></p>
+            <h1>Admin Log in</h1>
+            <p id="tag">You Are An User ? <a href="login.jsp">User Login</a></p>
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
                 

@@ -59,7 +59,7 @@
         <!-- <a href="agent.jsp">AGENT LOGIN</a> -->
 
         <!-- <a href="register.jsp">REGISTER</a> -->
-        <a href="train-schedule.jsp">TRAIN SCHEDULE</a>
+        <a href="Train_Schedule.jsp">TRAIN SCHEDULE</a>
         <a href="contact.jsp">CONTACT US</a>
         <a href="help.jsp">HELP & SUPPORT</a>
     </div>
@@ -151,6 +151,7 @@
             <th>Departure Time</th>
             <th>Frequency</th>
             <th>Total Coach</th>
+            <th>Total Seats</th>
             <th colspan="2">Actions</th>
 
         </tr>
@@ -163,9 +164,11 @@
             <td><%= train[4] %></td>
             <td><%= train[5] %></td>
             <td><%= train[6] %></td>
-            <td><a href="showTrainDetails.jsp"><button  name="<%= train[0] %>" class="btn-one" >View</button></a></td>
-            <td><a href="BookingPassenger.jsp"><button  class="btn-two"  name="<%= train[0] %>" >Book</button></a></td>
+            <td><%= train[7] %></td>
+            <td><a href="showTrainDetails.jsp?train_no=<%= train[0]%>"><button  name="<%= train[0] %>" class="btn-one" >View</button></a></td>
+            <td><a href="BookingPassenger.jsp?train_no=<%= train[0]%>"><button  class="btn-two"  name="<%= train[0] %>" >Book</button></a></td>
         </tr>
+<%--        session.setAttribute("tno", trainList[i]);--%>
         <% } %>
     </table>
 

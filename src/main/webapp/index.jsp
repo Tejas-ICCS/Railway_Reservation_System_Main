@@ -62,7 +62,6 @@
         <div class="nav1">
             <img src="Image/logo.png" alt="Railway logo">
             <a href="index.jsp" target="_parent">HOME</a>
-
             <%-- Show login/register links only if no user or admin is logged in --%>
             <% if (user == null && admin == null) { %>
             <a href="login.jsp">USER LOGIN</a>
@@ -75,7 +74,7 @@
             <a href="adminPage.jsp">ADMIN PAGE</a>
             <% } %>
 
-            <a href="train-schedule.jsp">TRAIN SCHEDULE</a>
+            <a href="Train_Schedule.jsp">TRAIN SCHEDULE</a>
             <a href="payment.jsp"><PAYMENT></PAYMENT></a>
             <a href="contact.jsp">CONTACT US</a>
             <a href="help.jsp">HELP & SUPPORT</a>

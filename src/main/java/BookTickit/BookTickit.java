@@ -30,7 +30,7 @@ public class BookTickit extends HttpServlet {
         try{
             HttpSession session = request.getSession();
 
-            String sql = "SELECT * FROM Train WHERE train_source = ? AND train_destination = ?";
+            String sql = "SELECT * FROM Train WHERE train_source = ? AND train_destination = ? AND is_cancelled ='false'";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, from);
             ps.setString(2, to);
@@ -46,7 +46,8 @@ public class BookTickit extends HttpServlet {
                         rs.getString("train_destination"),
                         rs.getString("train_time"),
                         rs.getString("train_frequency"),
-                        String.valueOf(rs.getInt("total_coach"))
+                        String.valueOf(rs.getInt("total_coach")),
+                        rs.getString("total_seats")
                 });
             }
 

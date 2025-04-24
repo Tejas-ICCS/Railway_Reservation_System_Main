@@ -1,9 +1,19 @@
+<%@ page import="java.util.List" %>
+<%@ page import="DatabaseConnection.DatabaseConnection" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page session="true" %>
 <%
     String user = (String) session.getAttribute("FirstName");
     String admin = (String) session.getAttribute("adminName");
 //    String addTrain = (String) session.getAttribute("addTrainError");
     String trainmsg = (String) session.getAttribute("trainmsg");
+    String cancelTrain = (String) session.getAttribute("cancelTrain");
+//    String trainList = (String) session.getAttribute("trainDetails");
+
+    List<String[]> trainAL = (List<String[]>) session.getAttribute("trainDetails");
 %>
 
 <%
@@ -43,6 +53,55 @@
                 `;
         }
     }
+
+
+
+    function verifyTrain(event) {
+        event.preventDefault(); // Prevent form submit
+
+        var trainNo = document.getElementById("tno").value.trim();
+
+        if (trainNo === "") {
+            document.getElementById("trainDetails").innerHTML = "";
+            alert("Train number cannot be empty!");
+            return;
+        }
+
+        fetch("VerifyTrainServlet?trainNo=" + trainNo)
+            .then(response => response.json())
+            .then(data => {
+                const div = document.getElementById("trainDetails");
+                div.innerHTML = "";
+
+                if (data.status === "not_found") {
+                    div.innerHTML = "<p style='color:red;'>Train not found.</p>";
+                } else {
+                    div.innerHTML = `
+    <div style="text-align: center;">
+        <h3>Train Details</h3>
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; margin: 0 auto;">
+            <tr><th>Train Number</th><td>${data.trainNo}</td></tr>
+            <tr><th>Train Name</th><td>${data.trainName}</td></tr>
+            <tr><th>Source</th><td>${data.trainSource}</td></tr>
+            <tr><th>Destination</th><td>${data.trainDestination}</td></tr>
+            <tr><th>Frequency</th><td>${data.trainFrequency}</td></tr>
+        </table>
+    </div>
+`;
+
+
+                }
+            })
+            .catch(err => {
+                console.error("Error verifying train:", err);
+            });
+    }
+
+    document.getElementById("tno").addEventListener("input", function () {
+        if (this.value.trim() === "") {
+            document.getElementById("trainDetails").innerHTML = "";
+        }
+    });
 </script>
 <body>
 <div class="nav">
@@ -79,7 +138,7 @@
     <%}%>
     <%--            <a href="submitOtp.jsp">Submit OTP</a>--%>
 
-    <a href="train-schedule.jsp">TRAIN SCHEDULE</a>
+    <a href="Train_Schedule.jsp">TRAIN SCHEDULE</a>
     <a href="contact.jsp">CONTACT US</a>
     <a href="help.jsp">HELP & SUPPORT</a>
 
@@ -90,7 +149,7 @@
 
 <div class="container">
     <button type="submit" popovertarget="AddTrain" class="btn btn-1">Add Train</button>
-    <button type="submit" popovertarget="cancleTrain" class="btn btn-2">Cancle Train</button>
+    <button type="submit" popovertarget="cancleTrain" class="btn btn-2">Cancel Train</button>
     <button type="submit" popovertarget="UpdateTrain" class="btn btn-3">Update Train</button>
 <%--    <button type="submit" popovertarget="DeleteTrain" class="btn btn-4">Delete Train</button>--%>
 
@@ -120,6 +179,8 @@
                 <input type="text" name="destination" placeholder="DESTINATION" required id="dest">
                 <br>
                 <input type="text" name="coach" placeholder="Total Coach" required id="coach">
+                <br>
+                <input type="text" name="seats" placeholder="Total Seats" required id="seat">
                 <br>
                 <input type="time" name="departure" placeholder="Departure Time" required id="departure">
             </div>
@@ -165,15 +226,45 @@
                     alert("<%= trainmsg %>");
                 </script>
                 <%
-                        session.removeAttribute("error");
+                        session.removeAttribute("trainmsg");
                     }
                 %>
             </div>
         </form>
     </div>
-    <div popover id="cancleTrain">Cancle Train</div>
+    <div popover id="cancleTrain">
+        <h2>Cancel Train</h2>
+
+<%--        <div class="cancle1">--%>
+            <form action="CancelTrain" method="post">
+                <label for="tno">Train Number</label>
+                <br>
+                <input type="text" name="trainNo" id="tno" maxlength="6" minlength="6" required>
+                <button onclick="verifyTrain(event)" class="btn11">VERIFY TRAIN</button>
+                <br>
+                <div id="trainDetails"></div>
+                <br>
+                <label for="reason">Reason</label>
+                <br>
+                <textarea name="reason" id="reason" required></textarea>
+                <br>
+                <button type="submit" class="btn22">CANCLE TRAIN</button>
+                <%
+                    if (cancelTrain != null) {
+                %>
+
+                <script>
+                    alert("<%= cancelTrain %>");
+                </script>
+                <%
+                        session.removeAttribute("cancelTrain");
+                    }
+                %>
+            </form>
+<%--        </div>--%>
+    </div>
     <div popover id="UpdateTrain">Update Train</div>
-    <div popover id="DeleteTrain">Delete Train</div>
+
 
 </div>
 

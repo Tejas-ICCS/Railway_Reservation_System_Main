@@ -62,7 +62,7 @@ public class AddTrain extends HttpServlet {
             String selectedDays = days.toString(); // Final result
 
             String insertTrain = "insert into Train(train_no, train_name, train_source, " +
-                    "train_destination, train_time, train_frequency, total_coach,username) values(?,?,?,?,?,?,?,?)";
+                    "train_destination, train_time, train_frequency, total_coach,username,total_seats,is_cancelled) values(?,?,?,?,?,?,?,?,?,?)";
 
             String routeInsert = "";
 
@@ -94,6 +94,9 @@ public class AddTrain extends HttpServlet {
                     ps.setString(6,selectedDays);
                     ps.setInt(7,Integer.parseInt(coach));
                     ps.setString(8,"demo_admin");
+                    ps.setInt(9,100);
+                    ps.setBoolean(10,false);
+
 
                     int row = ps.executeUpdate();
                     if(row>0){
