@@ -13,6 +13,8 @@
     if (user == null){
         response.sendRedirect("/Railway_Reservation_System/login.jsp");
     }
+    String otpVerificationError = (String) session.getAttribute("otpVerificationError");
+
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -181,6 +183,19 @@
     <% } else if (request.getAttribute("trainList") == null) { %>
     <p>No trains available for the selected route and date.</p>
     <% } %>
+
+    <%
+        //                    String trainmsg = (String) session.getAttribute("trainmsg");
+        if (otpVerificationError != null) {
+    %>
+
+    <script>
+        alert("<%= otpVerificationError %>");
+    </script>
+    <%
+            session.removeAttribute("trainmsg");
+        }
+    %>
 
     <br><br>
 </div>

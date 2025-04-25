@@ -17,7 +17,7 @@ import javax.mail.Authenticator;
 
 
 public class SendEmail {
-	public void sendEmail(String subject, String to, String from, int otp, String fname,String lname,String htmlContent,String textContent) throws MessagingException {
+	public void sendEmail(String subject, String to, String from,String htmlContent) throws MessagingException {
         // Gmail's SMTP server address
 
 		String host = "smtp.gmail.com";
@@ -61,10 +61,10 @@ public class SendEmail {
 
             htmlPart.setContent(htmlContent,"text/html");
 
-            MimeBodyPart textPart = new MimeBodyPart(); textPart.setText(textContent);
+//            MimeBodyPart textPart = new MimeBodyPart(); textPart.setText(textContent);
 
             MimeMultipart multipart = new MimeMultipart();
-            multipart.addBodyPart(htmlPart); multipart.addBodyPart(textPart);
+            multipart.addBodyPart(htmlPart);
 
             mm.setContent(multipart);
             mm.setSubject(subject);

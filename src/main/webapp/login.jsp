@@ -57,7 +57,7 @@
                 <div class="help-links">
                     <a href="agent.jsp">System Login</a>
                     <a href="forgotPassword.jsp">Forgot password?</a>
-                    <a href="#">Change Password</a>
+<%--                    <a href="#">Change Password</a>--%>
                     <a href="index.jsp">Home</a>
                 </div>
         </div>

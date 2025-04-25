@@ -2,7 +2,22 @@
 <%
     String user = (String) session.getAttribute("FirstName");
     String admin = (String) session.getAttribute("adminName");
+    session.setAttribute("from","railway.reservationproject12@gmail.com");
 %>
+
+<%
+    String status = (String) session.getAttribute("PasswordChange");
+    if (status != null) {
+%>
+<script>
+    alert("<%= status %>");
+</script>
+<%
+        session.removeAttribute("PasswordChange");
+    }
+%>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,12 +87,17 @@
             <%-- Show ADMIN PAGE only if admin is logged in --%>
             <% if (admin != null) { %>
             <a href="adminPage.jsp">ADMIN PAGE</a>
+            <a href="ChangePassword.jsp">CHANGE PASSWORD</a>
+            <% } %>
+            <% if (user != null) { %>
+            <a href="ChangePassword.jsp">CHANGE PASSWORD</a>
             <% } %>
 
             <a href="Train_Schedule.jsp">TRAIN SCHEDULE</a>
             <a href="payment.jsp"><PAYMENT></PAYMENT></a>
             <a href="contact.jsp">CONTACT US</a>
             <a href="help.jsp">HELP & SUPPORT</a>
+
         </div>
 
 

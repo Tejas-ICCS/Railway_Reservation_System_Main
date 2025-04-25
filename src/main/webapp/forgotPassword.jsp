@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+    String otpVerificationError = (String) session.getAttribute("otpVerificationError");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +23,8 @@
                 <label for="emailID">Email ID</label>
                 <input type="text" id="emailID" name="emailID" placeholder="Enter your Register Email ID" required>
 
+                <input type="hidden" name="mode" value="<%= request.getParameter("mode") %>">
+
                 <label for="DateOfBirth"></label>
                 <div class="password-field">
                     <label for="DateOfBirth"></label>
@@ -26,6 +32,18 @@
                 </div>
 
                 <button type="submit" class="submit-btn">Submit</button>
+
+                <%
+                    if (otpVerificationError != null) {
+                %>
+
+                <script>
+                    alert("<%= otpVerificationError %>");
+                </script>
+                <%
+                        session.removeAttribute("trainmsg");
+                    }
+                %>
 
                 <div class="help-links">
                     <!-- <a href="#">Forgot Account Details</a>-->
