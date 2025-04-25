@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%
+    String  user = (String) session.getAttribute("FirstName");
+    String  admin = (String) session.getAttribute("adminName");
     String status = (String) session.getAttribute("PasswordChange");
     if (status != null) {
 %>
@@ -42,6 +44,22 @@
             <div class="password-field">
                 <input type="password" id="confPass" name="confirmPass" placeholder="Confirm New password" required>
             </div>
+            <label for="#"> You are ?</label>
+            <div class="radio-field" id="#">
+                <%
+                    if(user != null){
+                %>
+                    <input type="hidden" id="user" name="user" value="user" required>
+                <%
+                    }else if(admin != null){
+                %>
+                    <input type="hidden" id="admin" name="user" value="admin" required>
+                <%
+                    }
+                %>
+            </div>
+
+
 
             <button type="submit" class="login-btn">Change Password</button>
 
