@@ -38,7 +38,7 @@
             <a href="index.jsp" target="_parent">HOME</a>
             <%-- Show login/register links only if no user or admin is logged in --%>
             <% if (user == null && admin == null) { %>
-            <a href="login.jsp">USER LOGIN</a>
+            <a href="login.jsp">PASSENGER LOGIN</a>
             <a href="agent.jsp">ADMIN LOGIN</a>
             <a href="register.jsp">REGISTER</a>
             <% } %>
@@ -85,6 +85,11 @@
             </div>
         </div>
     </form>
+
+    <div class="trainDetails">
+
+    </div>
+
     
     <footer style="background-color: #313131; color: #fff; padding: 20px 0;">
         <div style="display: flex; justify-content: space-around; flex-wrap: wrap; padding: 20px;">

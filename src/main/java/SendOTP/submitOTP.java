@@ -2,6 +2,7 @@ package SendOTP;
 
 import DatabaseConnection.DatabaseConnection;
 import ForgotDetails.ForgotDetails;
+import Payment.Passenger;
 import SendEmail.SendEmail;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,13 +16,100 @@ import java.security.SecureRandom;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @WebServlet("/verifyOtp")
 public class submitOTP extends HttpServlet {
     private int otp;
     private String password ;
+
+
+    private static final int TOTAL_SEATS = 300;
+    private static final int TOTAL_COACHES = 12;
+    private static final int SEATS_PER_COACH = TOTAL_SEATS / TOTAL_COACHES;
+
+    private boolean isTrainRunningOnSelectedDay(int trainNo, String journeyDate) {
+        // Get the day of the week for the selected journey date
+        LocalDate date = LocalDate.parse(journeyDate);
+        String dayOfWeek = date.getDayOfWeek().toString(); // "MONDAY", "TUESDAY", "WEDNESDAY", ...
+
+        // Convert to abbreviated form ("MON", "TUE", "WED", etc.)
+        String formattedDay = dayOfWeek.substring(0, 3).toUpperCase(); // "MON", "TUE", "WED", ...
+
+        boolean isTrainRunning = false;
+
+        // Fetch train frequency from the database
+        String frequencyQuery = "SELECT frequency FROM train WHERE train_no = ?";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(frequencyQuery)) {
+            pstmt.setInt(1, trainNo);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    String frequency = rs.getString("frequency");
+
+                    // Split the camel case string into individual days
+                    String[] days = splitCamelCase(frequency);
+
+                    // Check if the selected day is in the frequency list
+                    for (String day : days) {
+                        if (day.equalsIgnoreCase(formattedDay)) {
+                            isTrainRunning = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isTrainRunning;
+    }
+
+    private String[] splitCamelCase(String camelCaseString) {
+        // Split the camel case string into individual day abbreviations
+        return camelCaseString.split("(?=[A-Z])");
+    }
+
+
+
+
+    private String generatePNR() {
+        Random random = new Random();
+        int randomDigits = 100000 + random.nextInt(900000);
+        return "PNR" + randomDigits;
+    }
+
+    private int getLastAllocatedSeatNumber(int trainNo, String journeyDate) {
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
+            conn = databaseConnection.getConnection();
+
+            String sql = "SELECT COUNT(*) FROM train_passenger WHERE train_no = ? AND is_cancelled = false AND booking_date = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, trainNo);
+            pstmt.setString(2, journeyDate); // fetch based on today's journey date
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -108,6 +196,116 @@ public class submitOTP extends HttpServlet {
 
                     SendEmail sendEmail = new SendEmail();
                     sendEmail.sendEmail("Payment Successful", to, from,htmlContent);
+
+                    session.getAttribute("passengerList");
+                    int trainNo = (int) session.getAttribute("trainNo");
+                    session.getAttribute("fixedAmount");
+                    String emailID = (String) session.getAttribute("passEmailId");
+                    String journeyDate = (String) session.getAttribute("journeyDate");
+                    int totalPassengers = (int) session.getAttribute("totalPassengers");
+                    int lastSeatNumber = getLastAllocatedSeatNumber(trainNo, journeyDate);
+                    String bookingDate = LocalDate.now().toString();
+                    String bookingTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+                    String pnrNumber = generatePNR();
+
+                    String insertPassenger = "INSERT INTO train_passenger (id, emailID, train_no, total_amount, booking_date, booking_time, is_cancelled, is_refunded, status, seat_number, passenger_name, passenger_age, passenger_gender,journy_date) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                    ps = connection.prepareStatement(insertPassenger);
+
+                    List<Passenger> passengerList = (List<Passenger>) session.getAttribute("passengerList");
+                    for(int i=1;i<=totalPassengers;i++){
+                        String name = passengerList.get(i).getName();
+                        int age = passengerList.get(i).getAge();
+                        String gender = passengerList.get(i).getGender();
+
+                        int seatIndex = lastSeatNumber + i;
+                        String coach = String.valueOf((char) ('A' + (seatIndex - 1) / SEATS_PER_COACH)); // A, B, C, D... L
+                        int seatInCoach = ((seatIndex - 1) % SEATS_PER_COACH) + 1;
+                        String seatNumber = coach + seatInCoach;
+                        ps.setString(1, pnrNumber);
+                        ps.setString(2, emailID);
+                        ps.setInt(3, trainNo);
+                        ps.setInt(4, Integer.parseInt(amount));
+                        ps.setString(5, bookingDate.toString());
+                        ps.setString(6, bookingTime.format(String.valueOf(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+                        ps.setBoolean(7, false); // is_cancelled
+                        ps.setBoolean(8, false); // is_refunded
+                        ps.setString(9, "Booked"); // status
+                        ps.setString(10, seatNumber);
+                        ps.setString(11, name);
+                        ps.setInt(12, age);
+                        ps.setString(13, gender);
+                        ps.setString(14, journeyDate);
+
+                        int x = ps.executeUpdate();
+                        if(x>0){
+                            System.out.printf("Passenger %s has been successfully added to the database.\n", name);
+                            session.setAttribute("TicketBooked", "Ticket Booked Successfully");
+                            response.sendRedirect("/Railway_Reservation_System/Booking.jsp");
+
+                            StringBuilder htmlTable = new StringBuilder();
+
+// Add header information (like PNR, total amount, journey date, etc.)
+                            htmlTable.append("<h2 style='text-align:center; color: #4CAF50;'>Passenger Booking Details</h2>");
+                            htmlTable.append("<div style='font-size: 16px; margin-bottom: 10px;'>");
+                            htmlTable.append("<p><strong>PNR Number:</strong> ").append(pnrNumber).append("</p>");
+                            htmlTable.append("<p><strong>Train Number:</strong> ").append(trainNo).append("</p>");
+                            htmlTable.append("<p><strong>Journey Date:</strong> ").append(journeyDate).append("</p>");
+                            htmlTable.append("<p><strong>Total Amount:</strong> ₹").append(amount).append("</p>");
+                            htmlTable.append("<p><strong>Booking Date:</strong> ").append(bookingDate).append("</p>");
+                            htmlTable.append("<p><strong>Booking Time:</strong> ").append(bookingTime).append("</p>");
+                            htmlTable.append("</div>");
+
+// Create the table for passenger details with inline CSS
+                            htmlTable.append("<table border='1' cellpadding='10' cellspacing='0' style='border-collapse:collapse; width: 100%; margin-top: 20px; text-align: left; background-color: #f9f9f9;'>");
+                            htmlTable.append("<thead style='background-color: #4CAF50; color: white;'>");
+                            htmlTable.append("<tr>");
+                            htmlTable.append("<th style='padding: 10px;'>Passenger Name</th>");
+                            htmlTable.append("<th style='padding: 10px;'>Age</th>");
+                            htmlTable.append("<th style='padding: 10px;'>Gender</th>");
+                            htmlTable.append("<th style='padding: 10px;'>Seat Number</th>");
+                            htmlTable.append("<th style='padding: 10px;'>Status</th>"); // Added status column
+                            htmlTable.append("</tr>");
+                            htmlTable.append("</thead>");
+                            htmlTable.append("<tbody>");
+
+// Loop through the passengers and add their details to the table
+                            for (i = 1; i <= totalPassengers; i++) {
+                                String name1 = passengerList.get(i).getName();
+                                int age1 = passengerList.get(i).getAge();
+                                String gender1 = passengerList.get(i).getGender();
+
+                                // Assuming you have logic to get the seat number, like lastSeatNumber
+                                int seatNumber1 = lastSeatNumber + i;  // You may need to adjust this based on your logic
+
+                                // Example status (this should be dynamic based on your logic, e.g., "Booked", "Cancelled")
+                                String status1 = "Booked";  // Modify based on the actual status logic (e.g., check from DB)
+
+                                htmlTable.append("<tr>");
+                                htmlTable.append("<td style='padding: 8px; text-align:center;'>").append(name1).append("</td>");
+                                htmlTable.append("<td style='padding: 8px; text-align:center;'>").append(age1).append("</td>");
+                                htmlTable.append("<td style='padding: 8px; text-align:center;'>").append(gender1).append("</td>");
+                                htmlTable.append("<td style='padding: 8px; text-align:center;'>").append(seatNumber1).append("</td>");
+                                htmlTable.append("<td style='padding: 8px; text-align:center;'>").append(status1).append("</td>"); // Status cell
+                                htmlTable.append("</tr>");
+                            }
+
+                            htmlTable.append("</tbody>");
+                            htmlTable.append("</table>");
+
+                            String htmlContent1 = htmlTable.toString();
+                            sendEmail.sendEmail("Ticket Booked ", emailID, from,htmlContent1);
+
+// Now the htmlTable StringBuilder contains all the information you want to send in the email
+
+                        }
+                        else{
+                            System.out.printf("Passenger %s could not be added to the database.\n", name);
+                        }
+                    }
+
+
 
                     // Database logc to store the payment details into a table
 

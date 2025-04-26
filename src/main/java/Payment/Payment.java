@@ -34,7 +34,8 @@ public class Payment extends HttpServlet{
         String email = req.getParameter("email");
         HttpSession session = req.getSession();
 
-        int amount = 1000;
+        int amount = Integer.parseInt((String) session.getAttribute("fixedAmount"));
+//        int amount = 1000;
         StringBuilder sb = new StringBuilder();
         SendEmail se = new SendEmail();
 

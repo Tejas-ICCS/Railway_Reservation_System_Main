@@ -150,12 +150,12 @@
 <div class="container">
     <button type="submit" popovertarget="AddTrain" class="btn btn-1">Add Train</button>
     <button type="submit" popovertarget="cancleTrain" class="btn btn-2">Cancel Train</button>
-    <button type="submit" popovertarget="UpdateTrain" class="btn btn-3">Update Train</button>
+<%--    <button type="submit" popovertarget="UpdateTrain" class="btn btn-3">Update Train</button>--%>
 <%--    <button type="submit" popovertarget="DeleteTrain" class="btn btn-4">Delete Train</button>--%>
 
 
     <div popover id="AddTrain" class="AddTrain">
-        <h1>ADD TRAIN</h1>
+            <h1>ADD TRAIN</h1>
         <form action="AddTrain" method="post">
             <label for="add1">Train Number</label>
             <br>
@@ -169,7 +169,7 @@
             <!-- <br> -->
             <!-- for loop for total no of stops -->
 
-            <div class="sourceDetails">
+            <%--<div class="sourceDetails">
                 <!-- <label for="source">SOURCE</label> -->
                 <br>
                 <input type="text" name="source" placeholder="SOURCE" required id="source" >
@@ -183,7 +183,7 @@
                 <input type="text" name="seats" placeholder="Total Seats" required id="seat">
                 <br>
                 <input type="time" name="departure" placeholder="Departure Time" required id="departure">
-            </div>
+            </div>--%>
             <br>
             <input type="number" name="stops" id="stops"  placeholder="Total NO. OF STOPS" style="text-align: center;width: 300px;">
             <br><br>

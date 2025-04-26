@@ -11,11 +11,15 @@ import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/bookTickit")
 public class BookTickit extends HttpServlet {
+
+
+
     @Override
     protected void doPost(HttpServletRequest request , HttpServletResponse response){
         String from = request.getParameter("from");
@@ -29,7 +33,7 @@ public class BookTickit extends HttpServlet {
 
         try{
             HttpSession session = request.getSession();
-
+            session.setAttribute("jDate", date);
             String sql = "SELECT * FROM Train WHERE train_source = ? AND train_destination = ? AND is_cancelled ='false'";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, from);

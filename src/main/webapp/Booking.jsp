@@ -16,6 +16,18 @@
     String otpVerificationError = (String) session.getAttribute("otpVerificationError");
 
 %>
+
+<%
+    String status = (String) session.getAttribute("TicketBooked");
+    if (status != null) {
+%>
+<script>
+    alert("<%= status %>");
+</script>
+<%
+        session.removeAttribute("PasswordChange");
+    }
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -168,7 +180,9 @@
             <td><%= train[6] %></td>
             <td><%= train[7] %></td>
             <td><a href="showTrainDetails.jsp?train_no=<%= train[0]%>"><button  name="<%= train[0] %>" class="btn-one" >View</button></a></td>
-            <td><a href="BookingPassenger.jsp?train_no=<%= train[0]%>"><button  class="btn-two"  name="<%= train[0] %>" >Book</button></a></td>
+            <td><a href="BookingPassenger.jsp?train_no=<%= train[0]%>">
+                <button type="button" class="btn-two" name="<%= train[0] %>">Book</button>
+            </a></td>
         </tr>
 <%--        session.setAttribute("tno", trainList[i]);--%>
         <% } %>

@@ -4,6 +4,7 @@
     String user = (String) session.getAttribute("FirstName");
     String admin = (String) session.getAttribute("adminName");
     session.setAttribute("emailFrom","railway.reservationproject12@gmail.com");
+    session.setAttribute("FixedAmount",500);
 %>
 
 <%
@@ -18,7 +19,17 @@
     }
 %>
 
-
+<%
+    String Success = (String) session.getAttribute("Success");
+    if (Success != null) {
+%>
+<script>
+    alert("<%= Success %>");
+</script>
+<%
+        session.removeAttribute("Success");
+    }
+%>
 
 <!DOCTYPE html>
 <html lang="en">

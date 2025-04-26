@@ -8,8 +8,22 @@
 %>
 
 <%
-    String trainNo = request.getParameter("train_no");
+    int trainNo = Integer.valueOf(request.getParameter("train_no"));
 %>
+<%--selectedDate--%>
+<%
+    String Success = (String) session.getAttribute("selectedDate");
+    if (Success != null) {
+%>
+<script>
+    alert("<%= Success %>");
+</script>
+<%
+        session.removeAttribute("selectedDate");
+    }
+%>
+
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -130,22 +144,28 @@
     </div>
 </div>
 
-<div class="passengerDetails">
-    <h2>Total Number Of Passenger's</h2>
-    <br>
-    <input type="number" name="totalPassenger" min="1" max="5" id="passenger" required>
+<%
+    String journeyDate = (String) session.getAttribute("jDate");
+%>
 
-    <br><br><br>
-</div>
-<div class="btn">
-    <button onclick="generatePassenger()" class="search-button">Add Passsenger</button>
-</div>
-<div id="details"></div>
+<form action="passengerDetails?trainNo=<%=trainNo%>&journeyDate=<%= journeyDate %>" method="post">
+    <div class="passengerDetails">
+        <h2>Total Number Of Passenger's</h2>
+        <br>
+        <input type="number" name="totalPassenger" min="1" max="5" id="passenger" required>
 
-<!-- if the total no of passsenger is > 1 then display -->
-<div class="payment" id="payment">
+        <br><br><br>
+    </div>
+    <div class="btn">
+        <button onclick="generatePassenger()" class="search-button">Add Passsenger</button>
+    </div>
+    <div id="details"></div>
 
-</div>
+    <!-- if the total no of passsenger is > 1 then display -->
+    <div class="payment" id="payment">
+
+    </div>
+</form>
 
 <footer style="background-color: #313131; color: #fff; padding: 20px 0;">
     <div style="display: flex; justify-content: space-around; flex-wrap: wrap; padding: 20px;">

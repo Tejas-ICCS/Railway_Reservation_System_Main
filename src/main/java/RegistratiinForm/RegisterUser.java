@@ -32,19 +32,14 @@ public class RegisterUser extends HttpServlet {
 		String dateOfBirth = request.getParameter("dateOfBirth");
 		String password = request.getParameter("pass");
 
-
-		final String url = "jdbc:mysql://localhost:3306/railway_reservation_system";
-		final String pass = "Tejas172304@";
-		final String username = "root";
-
 		boolean exists = false;
 
 		HttpSession session = request.getSession();
 
 		try {
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			final Connection con = DriverManager.getConnection(url, username, pass);
+			DatabaseConnection db = DatabaseConnection.getInstance();
+			Connection con = db.getConnection();
 			PreparedStatement ps = null;
 			ResultSet rs = null;
 
@@ -81,6 +76,7 @@ public class RegisterUser extends HttpServlet {
 					if (result > 0) {
 
 						System.out.println("User Registered Successfully");
+						session.setAttribute("Success", "User Registered Successfully");
 						response.sendRedirect("/Railway_Reservation_System/index.jsp");
 
 					}
