@@ -37,14 +37,15 @@ public class ChangePassword extends HttpServlet {
         String adminName = "";
         String adminEmail = "";
 
-        String from = String.valueOf(session.getAttribute("from"));
+        String from = String.valueOf(session.getAttribute("emailFrom"));
 
         try{
             if(userType.equals("admin")){
-                String adminSelect = "select * from admin where username=? and password=?";
+                String adminSelect = "select * from admin where username=? or admin_mail_id = ? and password=?";
                 ps = con.prepareStatement(adminSelect);
                 ps.setString(1, username);
-                ps.setString(2, password);
+                ps.setString(2, username);
+                ps.setString(3, password);
                 rs = ps.executeQuery();
                 if(rs.next()){
                     adminName = rs.getString("name");
@@ -72,7 +73,14 @@ public class ChangePassword extends HttpServlet {
 
                        se.sendEmail("Admin Password changed",adminEmail,from,htmlContent);
                    }
+                   else{
+                       session.setAttribute("PasswordChange", "New password and Confirm password do not match!");
+                       response.sendRedirect("/Railway_Reservation_System/ChangePassword.jsp");
+                   }
 
+                }
+                if(x>0){
+                    response.sendRedirect("/Railway_Reservation_System/index.jsp");
                 }
             }
             else

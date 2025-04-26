@@ -39,6 +39,7 @@ public class LoginUser extends HttpServlet {
 			if(rs.next()) {
 				 fname = rs.getString("firstName");
 				 lname = rs.getString("lastName");
+				 session.setAttribute("loginedEmailId", username);
 
 				String name = fname + " " + lname;
 				session.setAttribute("FirstName", name);

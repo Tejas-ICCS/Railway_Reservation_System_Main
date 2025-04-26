@@ -12,6 +12,5 @@
     <PostResources base="/home/tejas/.m2/repository/io/micrometer/micrometer-commons/1.14.3/micrometer-commons-1.14.3.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/micrometer-commons-1.14.3.jar"/>
     <PostResources base="/home/tejas/.m2/repository/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/mysql-connector-java-8.0.28.jar"/>
     <PostResources base="/home/tejas/.m2/repository/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/protobuf-java-3.11.4.jar"/>
-    <PostResources base="/home/tejas/Documents/mysql-connector-j-9.2.0/mysql-connector-j-9.2.0.jar" className="org.apache.catalina.webresources.FileResourceSet" webAppMount="/WEB-INF/lib/mysql-connector-j-9.2.0.jar"/>
   </Resources>
 </Context>

@@ -13,6 +13,8 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,6 +108,30 @@ public class submitOTP extends HttpServlet {
 
                     SendEmail sendEmail = new SendEmail();
                     sendEmail.sendEmail("Payment Successful", to, from,htmlContent);
+
+                    // Database logc to store the payment details into a table
+
+                    LocalDate localDate = LocalDate.now();
+                    LocalTime localTime = LocalTime.now();
+                    String loginedEmailId = (String) session.getAttribute("loginedEmailId");
+                    String insertPayment = "insert into payment(payment_ID,emailID, payment_mode, transaction_date, transaction_time,transaction_amount)" +
+                            " values(?,?,?,?,?,?)";
+                    ps = connection.prepareStatement(insertPayment);
+                    ps.setString(1, transactionID);
+                    ps.setString(2,loginedEmailId);
+                    ps.setString(3, "Credit card");
+                    ps.setString(4, localDate.toString());
+                    ps.setString(5, localTime.toString());
+                    ps.setString(6, amount);
+
+                    int x = ps.executeUpdate();
+                    if(x>0){
+                        System.out.printf("Successfully stored into the database");
+                        session.removeAttribute("loginedEmailId");
+                    }
+                    else{
+                        System.out.println("Failed to store into the database");
+                    }
 //                    session.removeAttribute("users");
                     System.out.println("Payment Successful");
                     session.setAttribute("otpVerificationError","Payment Successful");

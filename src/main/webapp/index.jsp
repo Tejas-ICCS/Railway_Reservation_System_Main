@@ -1,8 +1,9 @@
+<%@ page import="com.mysql.cj.x.protobuf.MysqlxDatatypes" %>
 <%@ page session="true" %>
 <%
     String user = (String) session.getAttribute("FirstName");
     String admin = (String) session.getAttribute("adminName");
-    session.setAttribute("from","railway.reservationproject12@gmail.com");
+    session.setAttribute("emailFrom","railway.reservationproject12@gmail.com");
 %>
 
 <%
