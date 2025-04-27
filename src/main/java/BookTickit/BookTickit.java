@@ -65,6 +65,9 @@ public class BookTickit extends HttpServlet {
             session.setAttribute("trainList", trainList);
             response.sendRedirect("Booking.jsp");
 
+            session.setAttribute("source",from);
+            session.setAttribute("destination",to);
+
 
         }catch (Exception e){
             System.out.println("Exception is "+e);

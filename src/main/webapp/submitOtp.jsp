@@ -9,7 +9,7 @@
 
 <%
     String mode = request.getParameter("mode");
-    String otpVerificationError = (String) session.getAttribute("otpVerificationError");
+//    String otpVerificationError = (String) session.getAttribute("otpVerificationError");
 %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -37,6 +37,7 @@
         <button type="submit" class="btn1">Verify OTP</button>
         <button type="reset" class="btn2">Reset</button>
         <%
+            String otpVerificationError = request.getParameter("eroor");
             if (otpVerificationError != null) {
         %>
 

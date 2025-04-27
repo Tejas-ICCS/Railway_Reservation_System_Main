@@ -32,20 +32,21 @@ public class PassengerDetails extends HttpServlet {
         boolean isTrainRunning = false;
 
         // Fetch train frequency from the database
-        String frequencyQuery = "SELECT frequency FROM train WHERE train_no = ?";
+        String frequencyQuery = "SELECT train_frequency FROM Train WHERE train_no = ?";
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(frequencyQuery)) {
             pstmt.setInt(1, trainNo);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    String frequency = rs.getString("frequency");
+                    String frequency = rs.getString("train_frequency");
 
                     // Split the camel case string into individual days
                     String[] days = splitCamelCase(frequency);
 
                     // Check if the selected day is in the frequency list
                     for (String day : days) {
+                        day=day.substring(0,3);
                         if (day.equalsIgnoreCase(formattedDay)) {
                             isTrainRunning = true;
                             break;
@@ -109,6 +110,7 @@ public class PassengerDetails extends HttpServlet {
         int trainNo = Integer.parseInt(request.getParameter("trainNo"));
         int amount = Integer.parseInt(session.getAttribute("FixedAmount").toString());
         String journeyDate = (String) session.getAttribute("jDate");
+        String journeyTime = (String) session.getAttribute("jTime");
         String bookingDate = LocalDate.now().toString();
         String bookingTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         String pnrNumber = generatePNR();
@@ -124,8 +126,9 @@ public class PassengerDetails extends HttpServlet {
             }
             session.setAttribute("passengerList", passengerList);
             session.setAttribute("trainNo", trainNo);
-            session.setAttribute("fixedAmount", amount);
+            session.setAttribute("fixedAmount", (amount * totalPassenger));
             session.setAttribute("journeyDate", journeyDate);
+            session.setAttribute("journeyTime", journeyTime);
             session.setAttribute("passEmailId", emailID);
             session.setAttribute("totalPassengers", totalPassenger);
 

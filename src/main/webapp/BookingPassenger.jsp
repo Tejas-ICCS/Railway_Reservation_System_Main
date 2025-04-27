@@ -146,9 +146,15 @@
 
 <%
     String journeyDate = (String) session.getAttribute("jDate");
+
+    String journeyTime = request.getParameter("train_time");
+    session.setAttribute("jTime",journeyTime);
+
+    int totalSeats = Integer.parseInt(request.getParameter("total_seats"));
+    session.setAttribute("totalSeats",totalSeats);
 %>
 
-<form action="passengerDetails?trainNo=<%=trainNo%>&journeyDate=<%= journeyDate %>" method="post">
+<form action="passengerDetails?trainNo=<%=trainNo%>&journeyDate=<%= journeyDate %>&journeyTime=<%= journeyTime%>" method="post">
     <div class="passengerDetails">
         <h2>Total Number Of Passenger's</h2>
         <br>

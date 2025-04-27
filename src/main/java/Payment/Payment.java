@@ -34,7 +34,8 @@ public class Payment extends HttpServlet{
         String email = req.getParameter("email");
         HttpSession session = req.getSession();
 
-        int amount = Integer.parseInt((String) session.getAttribute("fixedAmount"));
+//        int amount = Integer.parseInt((String) session.getAttribute("fixedAmount"));
+        int amount = (int) session.getAttribute("fixedAmount");
 //        int amount = 1000;
         StringBuilder sb = new StringBuilder();
         SendEmail se = new SendEmail();
@@ -42,7 +43,7 @@ public class Payment extends HttpServlet{
         ArrayList<String > cardDetails = new ArrayList<String>();
         cardDetails.add(cardHolderName);
         cardDetails.add(cardNumber);
-        cardDetails.add(String.valueOf(1000));
+        cardDetails.add(String.valueOf(amount));
         cardDetails.add(email);
 
         /*cardDetails.add(String.valueOf(amount));
@@ -64,7 +65,7 @@ public class Payment extends HttpServlet{
                 + "<p>Hi <strong>" + cardHolderName + "</strong>,</p>"
                 + "<p>We received a request to process a payment.</p>"
                 + "<p><strong>Card Number:</strong> XXXX-XXXX-XXXX-" + cardNumber.substring(cardNumber.length() - 4) + "</p>"
-                + "<p><strong>Payment Amount:</strong> ₹" + amount + "</p>"
+                + "<p><strong>Payment Amount:</strong>" + amount + " RS/-</p>"
                 + "<p>Your One-Time Password (OTP) to authorize the payment is:</p>"
                 + "<div style='background-color: #f1f1f1; padding: 15px; border-radius: 5px; text-align: center;'>"
                 + "<h2 style='color: #e74c3c;'>" + otp + "</h2>"
