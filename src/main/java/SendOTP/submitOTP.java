@@ -199,6 +199,8 @@ public class submitOTP extends HttpServlet {
                         + "</div></body></html>";
 
                 try{
+                    String source = (String) session.getAttribute("source");
+                    String destination = (String) session.getAttribute("destination");
 
                     SendEmail sendEmail = new SendEmail();
                     sendEmail.sendEmail("Payment Successful", to, from,htmlContent);
@@ -216,8 +218,10 @@ public class submitOTP extends HttpServlet {
                     String pnrNumber = generatePNR();
 
                     try{
-                        String insertPassenger = "INSERT INTO train_passenger (id, emailID, train_no, total_amount, booking_date, booking_time, is_cancelled, is_refunded, status, seat_number, passenger_name, passenger_age, passenger_gender,journy_date,journy_time) " +
-                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        String insertPassenger = "INSERT INTO train_passenger " +
+                                "(id, emailID, train_no, total_amount, booking_date, booking_time, is_cancelled, is_refunded, " +
+                                "status, seat_number, passenger_name, passenger_age, passenger_gender,journy_date,journy_time,source,destination) " +
+                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                         Connection connection1 = DatabaseConnection.getInstance().getConnection();
                         ps1 = connection1.prepareStatement(insertPassenger);
                     } catch (Exception e) {
@@ -252,6 +256,8 @@ public class submitOTP extends HttpServlet {
                             ps1.setString(13, gender);
                             ps1.setString(14, journeyDate);
                             ps1.setString(15, journeyTime);
+                            ps1.setString(16, source);
+                            ps1.setString(17, destination);
 
                             int x = ps1.executeUpdate();
                             if (x > 0) {
@@ -270,8 +276,7 @@ public class submitOTP extends HttpServlet {
                         // Ticket booking success, set session attribute and redirect to booking page
                         session.setAttribute("TicketBooked", "Ticket Booked Successfully");
                         response.sendRedirect("/Railway_Reservation_System/Booking.jsp");
-                        String source = (String) session.getAttribute("source");
-                        String destination = (String) session.getAttribute("destination");
+
                         // Create HTML table for email content
                         StringBuilder htmlTable = new StringBuilder();
                         htmlTable.append("<h2 style='text-align:center; color: #4CAF50;'>Passenger Booking Details</h2>");

@@ -60,32 +60,6 @@
 
 <%--            <i class='bx bx-log-out'><a href="logout.jsp"></a></i>--%>
         </div>
-       <%-- <div class="nav1">
-            <img src="Image/logo.png" alt="Railway logo">
-            <a href="index.jsp" target="_parent">HOME</a>
-            <% if(user == null && admin ==null ) {%>
-                <a href="login.jsp">USER LOGIN</a>
-                <a href="agent.jsp">AGENT LOGIN</a>
-            <%}else if(admin == null && user==null){%>
-                <a href="login.jsp">USER LOGIN</a>
-                <a href="agent.jsp">AGENT LOGIN</a>
-            <%}%>
-
-
-            <% if(admin==null){%>
-            <a href="register.jsp">REGISTER</a>
-            <%}%>
-&lt;%&ndash;            <a href="submitOtp.jsp">Submit OTP</a>&ndash;%&gt;
-
-            <a href="train-schedule.jsp">TRAIN SCHEDULE</a>
-            <a href="contact.jsp">CONTACT US</a>
-            <a href="help.jsp">HELP & SUPPORT</a>
-
-            <% if(admin!=null){%>
-            <a href="adminPage.jsp">ADMIN PAGE</a>
-            <%}%>
-        </div>--%>
-
         <div class="nav1">
             <img src="Image/logo.png" alt="Railway logo">
             <a href="index.jsp" target="_parent">HOME</a>
@@ -105,7 +79,8 @@
             <a href="ChangePassword.jsp">CHANGE PASSWORD</a>
             <% } %>
 
-            <a href="Train_Schedule.jsp">TRAIN SCHEDULE</a>
+<%--            <a href="Train_Schedule.jsp">TRAIN SCHEDULE</a>--%>
+            <a href="checkPNR.jsp">CHECK PNR</a>
             <a href="payment.jsp"><PAYMENT></PAYMENT></a>
             <a href="contact.jsp">CONTACT US</a>
             <a href="help.jsp">HELP & SUPPORT</a>

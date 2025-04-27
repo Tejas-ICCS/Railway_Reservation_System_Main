@@ -1,96 +1,88 @@
 package LoginUser;
 
 import DatabaseConnection.DatabaseConnection;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet("/CheckPNR")
 public class CheckPNR extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request , HttpServletResponse response){
-        String pnrNo = request.getParameter("pnrNo");
-        HttpSession session = request.getSession();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        String pnrNo = request.getParameter("pnrNumber");
         DatabaseConnection db = DatabaseConnection.getInstance();
         Connection con = db.getConnection();
 
-        try{
-//            id = pnrNo
-            String query = "select * from train_passenger where id = ?";
-            PreparedStatement ps = null;
-            ResultSet rs1 = null;
-            ResultSet rs2 = null;
+        String query = "SELECT * FROM train_passenger WHERE id = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        Map<String, String> ticketInfo = new HashMap<>();
+        List<Map<String, String>> passengerList = new ArrayList<>();
+
+        try {
             ps = con.prepareStatement(query);
             ps.setString(1, pnrNo);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                String email = rs.getString("emailID");
-                String trainNo = rs.getString("train_no");
-                String BookingDate = rs.getString("booking_date");
-                String BookingTime = rs.getString("booking_time");
-                String is_cancelled = rs.getString("is_cancelled");
-                String status = rs.getString("status");
-                String seatNumber = rs.getString("seat_number");
+            rs = ps.executeQuery();
 
-
-                String query1 = "select * from payment where email_ID = ?";
-                ps = con.prepareStatement(query1);
-                ps.setString(1, email);
-                rs1 = ps.executeQuery();
-                if(rs1.next()){
-                    String paymentMode = rs.getString("payment_mode");
-                    String transactionDate = rs.getString("transaction_date");
-                    String transactionTime = rs.getString("transaction_time");
-                    String transactionAmount = rs.getString("transaction_amount");
-
-                    String query3 = "select * from Train where train_no = ?";
-                    ps = con.prepareStatement(query3);
-                    ps.setString(1, trainNo);
-                    rs2 = ps.executeQuery();
-                    if(rs2.next()){
-                        String trainName = rs.getString("train_name");
-                        String source = rs.getString("train_source");
-                        String destination = rs.getString("train_destination");
-                        String trainTime = rs.getString("train_time");
-
-                        ArrayList<String> pnrDetails = new ArrayList<>();
-                        pnrDetails.add(pnrNo);
-                        pnrDetails.add(trainNo);
-                        pnrDetails.add(trainName);
-                        pnrDetails.add(source);
-                        pnrDetails.add(destination);
-                        pnrDetails.add(trainTime);
-                        pnrDetails.add(seatNumber);
-                        pnrDetails.add(transactionAmount);
-                        pnrDetails.add(paymentMode);
-                        pnrDetails.add(transactionDate);
-                        pnrDetails.add(transactionTime);
-                        pnrDetails.add(BookingDate);
-                        pnrDetails.add(BookingTime);
-                        pnrDetails.add(is_cancelled);
-                        pnrDetails.add(status);
-
-                        session.setAttribute("pnrDetails", pnrDetails);
-                    }
-
+            while (rs.next()) {
+                if (ticketInfo.isEmpty()) {
+                    ticketInfo.put("emailID", rs.getString("emailID"));
+                    ticketInfo.put("train_no", rs.getString("train_no"));
+                    ticketInfo.put("total_amount", rs.getString("total_amount"));
+                    ticketInfo.put("booking_date", rs.getString("booking_date"));
+                    ticketInfo.put("booking_time", rs.getString("booking_time"));
+                    ticketInfo.put("status", rs.getString("status"));
+                    ticketInfo.put("journy_date", rs.getString("journy_date"));
+                    ticketInfo.put("journy_time", rs.getString("journy_time"));
+                    ticketInfo.put("source", rs.getString("source"));
+                    ticketInfo.put("destination", rs.getString("destination"));
                 }
 
+                Map<String, String> passengerData = new HashMap<>();
+                passengerData.put("seat_number", rs.getString("seat_number"));
+                passengerData.put("passenger_name", rs.getString("passenger_name"));
+                passengerData.put("passenger_age", rs.getString("passenger_age"));
+                passengerData.put("passenger_gender", rs.getString("passenger_gender"));
+                passengerList.add(passengerData);
             }
-            else{
-                session.setAttribute("pnrDetails", "No PNR Record Found");
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
 
+            if (!ticketInfo.isEmpty()) {
+                request.setAttribute("ticketInfo", ticketInfo);
+                request.setAttribute("passengerList", passengerList);
+                request.setAttribute("pnrNo", pnrNo);
+            } else {
+                request.setAttribute("pnrError", "Invalid PNR Number. Please try again.");
+            }
+
+            RequestDispatcher rd = request.getRequestDispatcher("checkPNR.jsp");
+            rd.forward(request, response);
+
+//            response.sendRedirect("/Railway_Reservation_System/checkPNR.jsp");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                request.setAttribute("pnrError", "Something went wrong while fetching PNR details.");
+                RequestDispatcher rd = request.getRequestDispatcher("checkPNR.jsp");
+                rd.forward(request, response);
+
+//                response.sendRedirect("/Railway_Reservation_System/checkPNR.jsp");
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }

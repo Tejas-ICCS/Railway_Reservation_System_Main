@@ -169,7 +169,7 @@
             <!-- <br> -->
             <!-- for loop for total no of stops -->
 
-            <%--<div class="sourceDetails">
+            <div class="sourceDetails">
                 <!-- <label for="source">SOURCE</label> -->
                 <br>
                 <input type="text" name="source" placeholder="SOURCE" required id="source" >
@@ -183,12 +183,12 @@
                 <input type="text" name="seats" placeholder="Total Seats" required id="seat">
                 <br>
                 <input type="time" name="departure" placeholder="Departure Time" required id="departure">
-            </div>--%>
+            </div>
             <br>
-            <input type="number" name="stops" id="stops"  placeholder="Total NO. OF STOPS" style="text-align: center;width: 300px;">
+            <%--<input type="number" name="stops" id="stops"  placeholder="Total NO. OF STOPS" style="text-align: center;width: 300px;">
             <br><br>
             <button type="button" class="btn-generate" onclick="generateStops()">Generate</button>
-            <div id="stationDetails"></div>
+            <div id="stationDetails"></div>--%>
 
             <!-- Train Frequency  -->
             <h2>Train Frequency</h2>
@@ -254,7 +254,7 @@
                 %>
 
                 <script>
-                    alert("<%= cancelTrain %>");
+                    confirm("<%= cancelTrain %>");
                 </script>
                 <%
                         session.removeAttribute("cancelTrain");
