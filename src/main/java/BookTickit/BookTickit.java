@@ -67,7 +67,7 @@ public class BookTickit extends HttpServlet {
 
             session.setAttribute("source",from);
             session.setAttribute("destination",to);
-
+//            session.setAttribute("journeyTime",);
 
         }catch (Exception e){
             System.out.println("Exception is "+e);

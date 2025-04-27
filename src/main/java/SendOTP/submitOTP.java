@@ -206,7 +206,8 @@ public class submitOTP extends HttpServlet {
                     sendEmail.sendEmail("Payment Successful", to, from,htmlContent);
 
                     session.getAttribute("passengerList");
-                    int trainNo = (int) session.getAttribute("trainNo");
+                    String train = (String) session.getAttribute("trainNo");
+                    int trainNo = Integer.parseInt(train);
                     session.getAttribute("fixedAmount");
                     String emailID = (String) session.getAttribute("passEmailId");
                     String journeyDate = (String) session.getAttribute("journeyDate");
@@ -220,8 +221,8 @@ public class submitOTP extends HttpServlet {
                     try{
                         String insertPassenger = "INSERT INTO train_passenger " +
                                 "(id, emailID, train_no, total_amount, booking_date, booking_time, is_cancelled, is_refunded, " +
-                                "status, seat_number, passenger_name, passenger_age, passenger_gender,journy_date,journy_time,source,destination) " +
-                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                "status, seat_number, passenger_name, passenger_age, passenger_gender,journy_date,journy_time,source,destination,refunded_amount) " +
+                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                         Connection connection1 = DatabaseConnection.getInstance().getConnection();
                         ps1 = connection1.prepareStatement(insertPassenger);
                     } catch (Exception e) {
@@ -258,6 +259,7 @@ public class submitOTP extends HttpServlet {
                             ps1.setString(15, journeyTime);
                             ps1.setString(16, source);
                             ps1.setString(17, destination);
+                            ps1.setInt(18, 0);
 
                             int x = ps1.executeUpdate();
                             if (x > 0) {
@@ -338,7 +340,8 @@ public class submitOTP extends HttpServlet {
                         // update the total seats from the train table for the given train number logic
 
                         String updateTrain = "update Train set total_seats = ? where train_no = ?";
-                        int ts = (int) session.getAttribute("totalSeats");
+                        String t = (String) session.getAttribute("totalSeats");
+                        int ts = Integer.parseInt(t);
                         int totalSeats = ts - totalPassengers;
                         connection = DatabaseConnection.getInstance().getConnection();
                         ps = connection.prepareStatement(updateTrain);

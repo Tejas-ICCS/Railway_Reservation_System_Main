@@ -17,12 +17,13 @@ import java.util.Map;
 @WebServlet("/CancelTrain")
 public class CancelTrain extends HttpServlet {
 
-    private boolean refundAmount(String pnr) {
+    private boolean refundAmount(String pnr , int amount) {
         Connection con = DatabaseConnection.getInstance().getConnection();
-        String refundQuery = "update train_passenger tp set is_refunded = ? where id = ?";
+        String refundQuery = "update train_passenger tp set is_refunded = ? , refunded_amount = ? where id = ?";
         try (PreparedStatement psRefund = con.prepareStatement(refundQuery)) {
             psRefund.setBoolean(1, true);
-            psRefund.setString(2,pnr);
+            psRefund.setInt(2, amount);
+            psRefund.setString(3,pnr);
             psRefund.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -60,14 +61,14 @@ public class CancelTrain extends HttpServlet {
                 String pnr = rs.getString("id"); // PNR number
                 String emailID = rs.getString("emailID");
                 String status = rs.getString("status"); // Ticket status
-                String amount = rs.getString("total_amount"); // Refund amount
+                int amount = rs.getInt("total_amount"); // Refund amount
                 String passengerName = rs.getString("passenger_name");
 
 
                 if (!processedPNRs.containsKey(pnr)) {
                     processedPNRs.put(pnr, "processed");
 
-                    boolean refundSuccess = refundAmount(pnr);
+                    boolean refundSuccess = refundAmount(pnr, amount);
                     if (refundSuccess) {
                         // Update all passengers for this PNR to 'canceled'
                         String updateStatusQuery = "UPDATE train_passenger SET status = 'Train Canceled' WHERE id = ?";

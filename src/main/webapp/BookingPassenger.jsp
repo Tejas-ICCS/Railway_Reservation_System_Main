@@ -8,7 +8,7 @@
 %>
 
 <%
-    int trainNo = Integer.valueOf(request.getParameter("train_no"));
+    String trainNo = request.getParameter("train_no");
 %>
 <%--selectedDate--%>
 <%
@@ -150,7 +150,7 @@
     String journeyTime = request.getParameter("train_time");
     session.setAttribute("jTime",journeyTime);
 
-    int totalSeats = Integer.parseInt(request.getParameter("total_seats"));
+    String totalSeats = request.getParameter("total_seats");
     session.setAttribute("totalSeats",totalSeats);
 %>
 

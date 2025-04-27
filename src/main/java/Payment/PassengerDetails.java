@@ -42,14 +42,19 @@ public class PassengerDetails extends HttpServlet {
                     String frequency = rs.getString("train_frequency");
 
                     // Split the camel case string into individual days
-                    String[] days = splitCamelCase(frequency);
+                    if(frequency.equals("Daily")) {
+                        isTrainRunning = true;
+                    }
+                    else{
+                        String[] days = splitCamelCase(frequency);
 
-                    // Check if the selected day is in the frequency list
-                    for (String day : days) {
-                        day=day.substring(0,3);
-                        if (day.equalsIgnoreCase(formattedDay)) {
-                            isTrainRunning = true;
-                            break;
+                        // Check if the selected day is in the frequency list
+                        for (String day : days) {
+                            day=day.substring(0,3);
+                            if (day.equalsIgnoreCase(formattedDay)) {
+                                isTrainRunning = true;
+                                break;
+                            }
                         }
                     }
                 }
@@ -107,7 +112,7 @@ public class PassengerDetails extends HttpServlet {
         HttpSession session = request.getSession();
         int totalPassenger = Integer.parseInt(request.getParameter("totalPassenger"));
         String emailID = (String) session.getAttribute("loginedEmailId");
-        int trainNo = Integer.parseInt(request.getParameter("trainNo"));
+        String trainNo = request.getParameter("trainNo");
         int amount = Integer.parseInt(session.getAttribute("FixedAmount").toString());
         String journeyDate = (String) session.getAttribute("jDate");
         String journeyTime = (String) session.getAttribute("jTime");
@@ -115,8 +120,8 @@ public class PassengerDetails extends HttpServlet {
         String bookingTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         String pnrNumber = generatePNR();
 //        String pnrNumber = "PNR" + UUID.randomUUID().toString().replace("-", "").substring(0, 8).toUpperCase();
-
-        if(isTrainRunningOnSelectedDay(trainNo, journeyDate)) {
+        int trainNo1 = Integer.parseInt(trainNo);
+        if(isTrainRunningOnSelectedDay(trainNo1, journeyDate)) {
             List<Passenger> passengerList = new ArrayList<>();
             for (int i = 1; i <= totalPassenger; i++) {
                 String name = request.getParameter("passengerName" + i);
@@ -135,7 +140,7 @@ public class PassengerDetails extends HttpServlet {
             response.sendRedirect("/Railway_Reservation_System/payment.jsp");
         }
         else {
-            session.setAttribute("selectedDate","Train Not for the selected date");
+            session.setAttribute("selectedDate","Train Not for the selected date\nPlease select a valid date");
             response.sendRedirect("/Railway_Reservation_System/BookingPassenger.jsp");
         }
     }

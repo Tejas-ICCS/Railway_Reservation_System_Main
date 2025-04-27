@@ -77,11 +77,11 @@
             <% } %>
             <% if (user != null) { %>
             <a href="ChangePassword.jsp">CHANGE PASSWORD</a>
+            <a href="cancelTrainByPassenger.jsp">CANCEL TICKIT</a>
             <% } %>
 
 <%--            <a href="Train_Schedule.jsp">TRAIN SCHEDULE</a>--%>
             <a href="checkPNR.jsp">CHECK PNR</a>
-            <a href="payment.jsp"><PAYMENT></PAYMENT></a>
             <a href="contact.jsp">CONTACT US</a>
             <a href="help.jsp">HELP & SUPPORT</a>
 
