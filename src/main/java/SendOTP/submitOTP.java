@@ -208,6 +208,7 @@ public class submitOTP extends HttpServlet {
                     session.getAttribute("passengerList");
                     String train = (String) session.getAttribute("trainNo");
                     int trainNo = Integer.parseInt(train);
+                    String trainName = (String) session.getAttribute("trainName");
                     session.getAttribute("fixedAmount");
                     String emailID = (String) session.getAttribute("passEmailId");
                     String journeyDate = (String) session.getAttribute("journeyDate");
@@ -285,6 +286,7 @@ public class submitOTP extends HttpServlet {
                         htmlTable.append("<div style='font-size: 16px; margin-bottom: 10px;'>");
                         htmlTable.append("<p><strong>PNR Number:</strong> ").append(pnrNumber).append("</p>");
                         htmlTable.append("<p><strong>Train Number:</strong> ").append(trainNo).append("</p>");
+                        htmlTable.append("<p><strong>Train Name:</strong> ").append(trainName).append("</p>");
                         htmlTable.append("<p><strong>Source:</strong> ").append(source).append("</p>");
                         htmlTable.append("<p><strong>Destination:</strong> ").append(destination).append("</p>");
                         htmlTable.append("<p><strong>Journey Date:</strong> ").append(journeyDate).append("</p>");
@@ -296,7 +298,7 @@ public class submitOTP extends HttpServlet {
 
                         // Create the table for passenger details
                         htmlTable.append("<table border='1' cellpadding='10' cellspacing='0' style='border-collapse:collapse; width: 100%; margin-top: 20px; text-align: left; background-color: #f9f9f9;'>");
-                        htmlTable.append("<thead style='background-color: #4CAF50; color: white;'>");
+                        htmlTable.append("<thead style='background: linear-gradient(to right, #ff9966, #ff5e62); color: white;'>");
                         htmlTable.append("<tr>");
                         htmlTable.append("<th style='padding: 10px;'>Passenger Name</th>");
                         htmlTable.append("<th style='padding: 10px;'>Age</th>");

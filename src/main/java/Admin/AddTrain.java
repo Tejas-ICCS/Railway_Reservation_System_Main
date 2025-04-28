@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 @WebServlet("/AddTrain")
-public class AddTrain extends HttpServlet {
+public class    AddTrain extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
             HttpSession session = request.getSession();
@@ -23,7 +23,7 @@ public class AddTrain extends HttpServlet {
             String source = request.getParameter("source");
             String destination = request.getParameter("destination");
 
-            int stops = Integer.parseInt(request.getParameter("stops"));
+//            int stops = Integer.parseInt(request.getParameter("stops"));
 
 
             String monday = request.getParameter("mon");
@@ -39,19 +39,19 @@ public class AddTrain extends HttpServlet {
             StringBuilder days = new StringBuilder();
 
             if (daily != null) {
-                days.append("daily");
+                days.append("Daily");
             } else {
                 // Add individual days if not null
-                if (request.getParameter("mon") != null) days.append("mon-");
-                if (request.getParameter("tue") != null) days.append("tue-");
-                if (request.getParameter("wed") != null) days.append("wed-");
-                if (request.getParameter("thu") != null) days.append("thu-");
-                if (request.getParameter("fri") != null) days.append("fri-");
-                if (request.getParameter("sat") != null) days.append("sat-");
-                if (request.getParameter("sun") != null) days.append("sun-");
+                if (request.getParameter("mon") != null) days.append("Mon,");
+                if (request.getParameter("tue") != null) days.append("Tue,");
+                if (request.getParameter("wed") != null) days.append("Wed,");
+                if (request.getParameter("thu") != null) days.append("Thu,");
+                if (request.getParameter("fri") != null) days.append("Fri,");
+                if (request.getParameter("sat") != null) days.append("Sat,");
+                if (request.getParameter("sun") != null) days.append("Sun,");
 
                 // Remove trailing dash if any days were added
-                if (days.length() > 0 && days.charAt(days.length() - 1) == '-') {
+                if (days.length() > 0 && days.charAt(days.length() - 1) == ',') {
                     days.setLength(days.length() - 1);
                 }
             }

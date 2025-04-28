@@ -166,7 +166,7 @@
             <th>Frequency</th>
             <th>Total Coach</th>
             <th>Total Seats</th>
-            <th colspan="2">Actions</th>
+            <th >Actions</th>
 
         </tr>
         <% for (String[] train : trainList) { %>
@@ -179,8 +179,8 @@
             <td><%= train[5] %></td>
             <td><%= train[6] %></td>
             <td><%= train[7] %></td>
-            <td><a href="showTrainDetails.jsp?train_no=<%= train[0]%>"><button  name="<%= train[0] %>" class="btn-one" >View</button></a></td>
-            <td><a href="BookingPassenger.jsp?train_no=<%= train[0] %>&train_time=<%= train[4] %>&total_seats=<%= train[7]%>"><button  name="<%= train[0] %>" class="btn-two" >Book Now</button></a></td>
+<%--            <td><a href="showTrainDetails.jsp?train_no=<%= train[0]%>"><button  name="<%= train[0] %>" class="btn-one" >View</button></a></td>--%>
+            <td><a href="BookingPassenger.jsp?train_no=<%= train[0] %>&train_time=<%= train[4] %>&total_seats=<%= train[7]%>&train_name=<%= train[1]%>"><button  name="<%= train[0] %>" class="btn-two" >Book Now</button></a></td>
 <%--            <button type="button" class="btn-two" name="<%= train[0] %>">Book</button>--%>
             </a></td>
         </tr>

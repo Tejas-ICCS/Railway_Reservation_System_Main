@@ -136,14 +136,6 @@
     <h1>Train Tickit Booking</h1>
     <!-- value of boarding station is passed from booking.jsp -->
 </div>
-
-<div class="bordingDetails">
-    <h3>Bording Station</h3>
-    <div class="bording">
-        <!-- fetch details from the sessions -->
-    </div>
-</div>
-
 <%
     String journeyDate = (String) session.getAttribute("jDate");
 
@@ -152,7 +144,27 @@
 
     String totalSeats = request.getParameter("total_seats");
     session.setAttribute("totalSeats",totalSeats);
+
+    String trainName = request.getParameter("train_name");
+    session.setAttribute("trainName",trainName);
+
+    String source =(String) session.getAttribute("source");
+    String destination = (String) session.getAttribute("destination");
 %>
+<div class="bordingDetails">
+    <h3>Journey Details</h3>
+    <div class="bording">
+        <!-- fetch details from the sessions -->
+        <h3>Source : <%=source%></h3>
+        <h3>Destination : <%=destination%></h3>
+        <h3>Train Number : <%=trainNo%></h3>
+        <h3>Train Name : <%=trainName%></h3>
+        <h3>Journey Date : <%=journeyDate%></h3>
+        <h3>Journey Time : <%=journeyTime%></h3>
+    </div>
+</div>
+
+
 
 <form action="passengerDetails?trainNo=<%=trainNo%>&journeyDate=<%= journeyDate %>&journeyTime=<%= journeyTime%>" method="post">
     <div class="passengerDetails">

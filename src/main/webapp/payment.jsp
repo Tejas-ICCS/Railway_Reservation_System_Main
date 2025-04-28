@@ -33,7 +33,7 @@
                 <h3>Email ID</h3>
                 <input type="email" name="email" id="" placeholder="Email For verification" required class="card">
                 <h3>Total Amount</h3>
-                <h2 id="fair">${Total_Fair_value}</h2>
+                <h2 id="fair"><%=session.getAttribute("fixedAmount")%></h2>
                 <button type="submit" name="submit" id="submit">Make Payment</button>
                 <%
                     //                    String trainmsg = (String) session.getAttribute("trainmsg");
