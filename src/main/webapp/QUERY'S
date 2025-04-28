@@ -47,3 +47,348 @@ alter table route drop column stop;
 select * from route r ;
 
 select * from train;
+
+
+
+CREATE TABLE new_user(firstName VARCHAR(500) not null,lastName varchar(500) not null,
+emailID varchar(500) Primary key unique not null,
+mobileNumber varchar(100) unique, password varchar(500) not null,
+gender varchar(100) not null);
+
+alter table new_user add column Date_Of_Birth date;
+
+
+
+CREATE TABLE Train(train_no int primary key not null,train_Name varchar(500) not null,
+
+train_source varchar(500) not null,train_destination varchar(500) not null,
+
+train_time TIME not null,train_frequency varchar(500) not null);
+
+
+
+CREATE TABLE Station(train_no int not null,FOREIGN KEY (train_no) REFERENCES Train(train_no),
+
+station_Code varchar(500) primary key not null,station_Name varchar(500) not null);
+
+
+ALTER TABLE Station ADD COLUMN arrival_time TIME not null,
+
+   ADD COLUMN departure_time TIME not null;
+
+
+ALTER TABLE Train add column coach varchar(200) not null after train_destination,
+
+add column total_coach int not null;
+
+
+CREATE TABLE route (
+
+    route_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    train_no int NOT NULL,FOREIGN KEY (train_no) REFERENCES Train(train_no),
+
+    station_Code VARCHAR(500) NOT NULL,FOREIGN KEY (station_Code) REFERENCES Station(station_Code),
+
+    arrival_time TIME not null,
+
+    departure_time TIME not null
+
+);
+
+CREATE TABLE payment (
+
+    payment_ID BIGINT PRIMARY KEY NOT NULL,
+
+    emailID VARCHAR(500),
+
+    FOREIGN KEY (emailID) REFERENCES new_user(emailID),
+
+    payment_mode VARCHAR(500) NOT NULL CHECK (payment_mode IN ('online', 'offline')),
+
+    transaction_date DATE NOT NULL,
+
+    transaction_time TIME NOT NULL);
+    
+
+CREATE TABLE train_passenger(id int primary key not null,emailID varchar(500) not null,FOREIGN KEY (emailID) REFERENCES new_user(emailID),
+
+train_no int not null,FOREIGN KEY (train_no) REFERENCES Train(train_no));
+
+
+select * from new_user  ;
+
+delete from new_user where firstName='Tejas';
+
+ALTER TABLE Train DROP COLUMN coach;
+
+select * FROM Train t where t.train_no =789654 ;
+update new_user nu  set username ='demo_admin';
+
+desc Train;
+UPDATE new_user nu set password ='pradnya2311' where emailID='pradnyamahadik231@gmail.com';
+
+
+INSERT INTO Train (train_no, train_Name, train_source, train_destination, train_time, train_frequency, total_coach) VALUES
+(101001, 'Mumbai Express', 'Mumbai', 'Pune', '06:00', 'Mon,Wed,Fri', 18),
+(101002, 'Pune Express', 'Pune', 'Mumbai', '09:00', 'Mon,Wed,Fri', 18),
+(101003, 'Delhi Rajdhani', 'Delhi', 'Kolkata', '07:30', 'Tue,Thu,Sat', 22),
+(101004, 'Kolkata Rajdhani', 'Kolkata', 'Delhi', '20:00', 'Tue,Thu,Sat', 22),
+(101005, 'Chennai Mail', 'Chennai', 'Bangalore', '05:45', 'Daily', 16),
+(101006, 'Bangalore Mail', 'Bangalore', 'Chennai', '22:15', 'Daily', 16),
+(101007, 'Hyderabad Express', 'Hyderabad', 'Mumbai', '08:00', 'Mon,Wed,Fri', 20),
+(101008, 'Mumbai Express', 'Mumbai', 'Hyderabad', '21:00', 'Mon,Wed,Fri', 20),
+(101009, 'Jaipur Superfast', 'Jaipur', 'Delhi', '06:15', 'Daily', 15),
+(101010, 'Delhi Superfast', 'Delhi', 'Jaipur', '19:45', 'Daily', 15),
+(101011, 'Goa Express', 'Goa', 'Mumbai', '07:00', 'Tue,Thu,Sat', 18),
+(101012, 'Mumbai Goa Express', 'Mumbai', 'Goa', '20:30', 'Tue,Thu,Sat', 18),
+(101013, 'Ahmedabad Shatabdi', 'Ahmedabad', 'Mumbai', '06:45', 'Mon,Wed,Fri', 20),
+(101014, 'Mumbai Shatabdi', 'Mumbai', 'Ahmedabad', '19:15', 'Mon,Wed,Fri', 20),
+(101015, 'Lucknow Express', 'Lucknow', 'Delhi', '08:30', 'Daily', 17),
+(101016, 'Delhi Lucknow Express', 'Delhi', 'Lucknow', '22:00', 'Daily', 17),
+(101017, 'Patna Express', 'Patna', 'Kolkata', '07:45', 'Tue,Thu,Sat', 16),
+(101018, 'Kolkata Patna Express', 'Kolkata', 'Patna', '19:30', 'Tue,Thu,Sat', 16),
+(101019, 'Bhopal Express', 'Bhopal', 'Delhi', '09:15', 'Mon,Wed,Fri', 14),
+(101020, 'Delhi Bhopal Express', 'Delhi', 'Bhopal', '21:45', 'Mon,Wed,Fri', 14),
+(101021, 'Nagpur Duronto', 'Nagpur', 'Mumbai', '06:00', 'Daily', 20),
+(101022, 'Mumbai Nagpur Duronto', 'Mumbai', 'Nagpur', '23:00', 'Daily', 20),
+(101023, 'Surat Express', 'Surat', 'Ahmedabad', '07:30', 'Daily', 12),
+(101024, 'Ahmedabad Surat Express', 'Ahmedabad', 'Surat', '18:00', 'Daily', 12),
+(101025, 'Mysore Express', 'Mysore', 'Chennai', '08:45', 'Tue,Thu,Sat', 16),
+(101026, 'Chennai Mysore Express', 'Chennai', 'Mysore', '20:15', 'Tue,Thu,Sat', 16),
+(101027, 'Vijayawada Intercity', 'Vijayawada', 'Hyderabad', '06:30', 'Daily', 14),
+(101028, 'Hyderabad Vijayawada Intercity', 'Hyderabad', 'Vijayawada', '19:00', 'Daily', 14),
+(101029, 'Varanasi Express', 'Varanasi', 'Delhi', '09:00', 'Mon,Wed,Fri', 18),
+(101030, 'Delhi Varanasi Express', 'Delhi', 'Varanasi', '22:30', 'Mon,Wed,Fri', 18),
+(101031, 'Guwahati Express', 'Guwahati', 'Kolkata', '05:30', 'Daily', 20),
+(101032, 'Kolkata Guwahati Express', 'Kolkata', 'Guwahati', '22:30', 'Daily', 20),
+(101033, 'Dehradun Shatabdi', 'Dehradun', 'Delhi', '06:00', 'Tue,Thu,Sat', 15),
+(101034, 'Delhi Dehradun Shatabdi', 'Delhi', 'Dehradun', '18:30', 'Tue,Thu,Sat', 15),
+(101035, 'Coimbatore Express', 'Coimbatore', 'Chennai', '08:00', 'Daily', 16),
+(101036, 'Chennai Coimbatore Express', 'Chennai', 'Coimbatore', '21:00', 'Daily', 16),
+(101037, 'Kanyakumari Express', 'Kanyakumari', 'Bangalore', '09:15', 'Mon,Wed,Fri', 18),
+(101038, 'Bangalore Kanyakumari Express', 'Bangalore', 'Kanyakumari', '20:45', 'Mon,Wed,Fri', 18),
+(101039, 'Agra Express', 'Agra', 'Delhi', '07:45', 'Daily', 14),
+(101040, 'Delhi Agra Express', 'Delhi', 'Agra', '20:15', 'Daily', 14),
+(101041, 'Bhubaneswar Rajdhani', 'Bhubaneswar', 'Delhi', '08:30', 'Tue,Thu,Sat', 22),
+(101042, 'Delhi Bhubaneswar Rajdhani', 'Delhi', 'Bhubaneswar', '20:30', 'Tue,Thu,Sat', 22),
+(101043, 'Madurai Express', 'Madurai', 'Chennai', '06:15', 'Daily', 16),
+(101044, 'Chennai Madurai Express', 'Chennai', 'Madurai', '21:30', 'Daily', 16),
+(101045, 'Shimla Kalka Express', 'Shimla', 'Kalka', '07:00', 'Daily', 10),
+(101046, 'Kalka Shimla Express', 'Kalka', 'Shimla', '18:00', 'Daily', 10),
+(101047, 'Ranchi Express', 'Ranchi', 'Kolkata', '08:45', 'Mon,Wed,Fri', 18),
+(101048, 'Kolkata Ranchi Express', 'Kolkata', 'Ranchi', '20:45', 'Mon,Wed,Fri', 18),
+(101049, 'Indore Express', 'Indore', 'Delhi', '09:30', 'Daily', 17),
+(101050, 'Delhi Indore Express', 'Delhi', 'Indore', '21:45', 'Daily', 17),
+(101051, 'Pune Goa Express', 'Pune', 'Goa', '07:00', 'Daily', 16),
+(101052, 'Goa Pune Express', 'Goa', 'Pune', '18:00', 'Daily', 16),
+(101053, 'Deccan Queen', 'Pune', 'Goa', '08:30', 'Mon,Wed,Fri', 18),
+(101054, 'Konkan Express', 'Goa', 'Pune', '20:45', 'Mon,Wed,Fri', 18),
+(101055, 'Sahyadri Express', 'Pune', 'Goa', '09:15', 'Tue,Thu,Sat', 20),
+(101056, 'Mandovi Express', 'Goa', 'Pune', '21:30', 'Tue,Thu,Sat', 20),
+(101057, 'Pune Coastal Express', 'Pune', 'Goa', '10:00', 'Daily', 22),
+(101058, 'Goa Coastal Express', 'Goa', 'Pune', '22:00', 'Daily', 22),
+(101059, 'Pune Konkani Express', 'Pune', 'Goa', '11:30', 'Mon,Wed,Fri', 16),
+(101060, 'Goa Konkani Express', 'Goa', 'Pune', '23:15', 'Mon,Wed,Fri', 16),
+(101061, 'Western Ghats Express', 'Pune', 'Goa', '12:45', 'Tue,Thu,Sat', 18),
+(101062, 'Goa Western Ghats Express', 'Goa', 'Pune', '00:30', 'Tue,Thu,Sat', 18),
+(101063, 'Deccan Express', 'Pune', 'Mumbai', '06:00', 'Daily', 18),
+(101064, 'Mumbai Deccan Express', 'Mumbai', 'Pune', '10:00', 'Daily', 18),
+(101065, 'Sinhagad Express', 'Pune', 'Mumbai', '07:30', 'Mon,Wed,Fri', 16),
+(101066, 'Mumbai Sinhagad Express', 'Mumbai', 'Pune', '12:00', 'Mon,Wed,Fri', 16),
+(101067, 'Indrayani Express', 'Pune', 'Mumbai', '09:15', 'Tue,Thu,Sat', 20),
+(101068, 'Mumbai Indrayani Express', 'Mumbai', 'Pune', '14:30', 'Tue,Thu,Sat', 20),
+(101069, 'Pragati Express', 'Pune', 'Mumbai', '10:45', 'Daily', 22),
+(101070, 'Mumbai Pragati Express', 'Mumbai', 'Pune', '16:00', 'Daily', 22),
+(101071, 'Udyan Express', 'Pune', 'Mumbai', '12:30', 'Mon,Wed,Fri', 18),
+(101072, 'Mumbai Udyan Express', 'Mumbai', 'Pune', '18:45', 'Mon,Wed,Fri', 18),
+(101073, 'Shivneri Express', 'Pune', 'Mumbai', '14:00', 'Daily', 16),
+(101074, 'Mumbai Shivneri Express', 'Mumbai', 'Pune', '20:00', 'Daily', 16),
+(101075, 'Koyna Express', 'Pune', 'Mumbai', '15:30', 'Tue,Thu,Sat', 20),
+(101076, 'Mumbai Koyna Express', 'Mumbai', 'Pune', '22:15', 'Tue,Thu,Sat', 20),
+(101077, 'Bhusaval Express', 'Pune', 'Mumbai', '17:00', 'Daily', 18),
+(101078, 'Mumbai Bhusaval Express', 'Mumbai', 'Pune', '23:45', 'Daily', 18),
+(101079, 'Mahalaxmi Express', 'Pune', 'Mumbai', '18:30', 'Mon,Wed,Fri', 22),
+(101080, 'Mumbai Mahalaxmi Express', 'Mumbai', 'Pune', '01:15', 'Mon,Wed,Fri', 22),
+(101081, 'Panchavati Express', 'Pune', 'Mumbai', '20:00', 'Tue,Thu,Sat', 16),
+(101082, 'Mumbai Panchavati Express', 'Mumbai', 'Pune', '04:30', 'Tue,Thu,Sat', 16),
+(101083, 'Konkan Kanya Express', 'Mumbai', 'Ratnagiri', '06:00', 'Daily', 18),
+(101084, 'Ratnagiri Konkan Kanya Express', 'Ratnagiri', 'Mumbai', '12:00', 'Daily', 18),
+(101085, 'Matsyagandha Express', 'Mumbai', 'Ratnagiri', '07:30', 'Mon,Wed,Fri', 16),
+(101086, 'Ratnagiri Matsyagandha Express', 'Ratnagiri', 'Mumbai', '14:00', 'Mon,Wed,Fri', 16),
+(101087, 'Mandovi Express', 'Mumbai', 'Ratnagiri', '09:15', 'Tue,Thu,Sat', 20),
+(101088, 'Ratnagiri Mandovi Express', 'Ratnagiri', 'Mumbai', '16:30', 'Tue,Thu,Sat', 20),
+(101089, 'Jan Shatabdi Express', 'Mumbai', 'Ratnagiri', '10:45', 'Daily', 22),
+(101090, 'Ratnagiri Jan Shatabdi Express', 'Ratnagiri', 'Mumbai', '18:00', 'Daily', 22),
+(101091, 'Ratnagiri Express', 'Mumbai', 'Ratnagiri', '12:30', 'Mon,Wed,Fri', 18),
+(101092, 'Mumbai Ratnagiri Express', 'Ratnagiri', 'Mumbai', '20:00', 'Mon,Wed,Fri', 18),
+(101093, 'Sahyadri Express', 'Mumbai', 'Ratnagiri', '14:00', 'Daily', 16),
+(101094, 'Ratnagiri Sahyadri Express', 'Ratnagiri', 'Mumbai', '22:30', 'Daily', 16),
+(101095, 'Coastal Express', 'Mumbai', 'Ratnagiri', '15:30', 'Tue,Thu,Sat', 20),
+(101096, 'Ratnagiri Coastal Express', 'Ratnagiri', 'Mumbai', '00:45', 'Tue,Thu,Sat', 20),
+(101097, 'Western Ghats Express', 'Mumbai', 'Ratnagiri', '17:00', 'Daily', 18),
+(101098, 'Ratnagiri Western Ghats Express', 'Ratnagiri', 'Mumbai', '02:30', 'Daily', 18),
+(101099, 'Kokan Queen Express', 'Mumbai', 'Ratnagiri', '18:30', 'Mon,Wed,Fri', 22),
+(101100, 'Ratnagiri Kokan Queen Express', 'Ratnagiri', 'Mumbai', '05:15', 'Mon,Wed,Fri', 22),
+(101101, 'Malvan Express', 'Mumbai', 'Ratnagiri', '20:00', 'Tue,Thu,Sat', 16),
+(101102, 'Ratnagiri Malvan Express', 'Ratnagiri', 'Mumbai', '07:30', 'Tue,Thu,Sat', 16);
+
+
+
+create table admin(username varchar(500) primary key not null,password varchar(500)not null,name varchar(500) not null);
+
+
+insert into admin values('demo_admin','admin','Tejas_Admin');
+
+
+
+ALTER TABLE new_user ADD CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES admin(username);
+
+
+
+ALTER TABLE new_user 
+ADD CONSTRAINT fk_username_new_user 
+FOREIGN KEY (username) 
+REFERENCES admin(username);
+
+
+-- Step 1: Add the column
+
+ALTER TABLE Train  ADD COLUMN username VARCHAR(500);
+
+
+
+-- Step 2: Add the foreign key constraint
+
+ALTER TABLE Train ADD CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES admin(username);
+create database Railway_Reservation_System;
+use Railway_Reservation_System
+
+SELECT * FROM train_passenger tp ;
+select * FROM new_user nu ;
+select * from train_cancellations;
+select * from Train t ;
+delete from train_cancellations;
+update train set is_cancelled =false where train_no = 101001;
+
+CREATE TABLE train_cancellations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    train_no INT NOT NULL,
+    reason TEXT,
+    FOREIGN KEY (train_no) REFERENCES Train(train_no) ON DELETE cascade,
+    cancelled_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+
+
+alter table Train add column total_seats int;
+ALTER TABLE train_passenger ADD COLUMN is_cancelled BOOLEAN DEFAULT FALSE;
+
+UPDATE Train t  SET t.total_seats = 100;
+
+INSERT INTO route (train_no, station_code, arrival_time, departure_time, distance_km, platform_no, stop_number) VALUES
+(100101, 'NDLS', '16:30:00', '16:40:00', 0, 1, 1),
+(100101, 'AGC', '19:10:00', '19:15:00', 195, 2, 2),
+(100101, 'JP', '23:50:00', '23:55:00', 461, 3, 3),
+(100101, 'BCT', '08:15:00', NULL, 1386, 4, 4),
+(100102, 'BCT', '07:00:00', '07:05:00', 0, 1, 1),
+(100102, 'LNL', '08:45:00', '08:50:00', 128, 2, 2),
+(100102, 'PUNE', '10:30:00', NULL, 192, 3, 3),
+(100103, 'BCT', '23:30:00', '23:40:00', 0, 1, 1),
+(100103, 'GOA', '08:10:00', NULL, 579, 2, 2),
+(100104, 'MAS', '22:00:00', '22:10:00', 0, 1, 1),
+(100104, 'SBC', '05:30:00', NULL, 362, 2, 2),
+(100105, 'NDLS', '06:00:00', '06:10:00', 0, 1, 1),
+(100105, 'AGC', '08:15:00', NULL, 200, 2, 2),
+(100106, 'BCT', '20:00:00', '20:10:00', 0, 1, 1),
+(100106, 'MAS', '10:15:00', NULL, 1275, 2, 2),
+(100107, 'BCT', '17:00:00', '17:10:00', 0, 1, 1),
+(100107, 'JP', '08:50:00', NULL, 1160, 2, 2),
+(100108, 'BCT', '15:30:00', '15:40:00', 0, 1, 1),
+(100108, 'HWH', '10:30:00', NULL, 1952, 2, 2),
+(100109, 'BCT', '22:15:00', '22:25:00', 0, 1, 1),
+(100109, 'PUNE', '01:00:00', NULL, 192, 2, 2),
+(100110, 'BCT', '21:30:00', '21:40:00', 0, 1, 1),
+(100110, 'NDLS', '11:10:00', NULL, 1386, 2, 2);
+
+
+alter table route drop column stop;
+
+select * from route r ;
+
+select * from Train where train_no = 101063;
+
+update Train set total_seats = 300;
+
+alter table train_passenger add column total_amount int not null,booking_date Date not null,
+booking_time time not null;
+
+alter table train_cancellations add column train_cancel_date date not null;
+
+alter table admin add column admin_emailID varchar(255) not null;
+
+
+show tables;
+
+alter table payment add column transaction_amount varchar(255) not null; 
+
+alter table train_passenger add column is_refunded BOOLEAN DEFAULT FALSE not null;
+
+alter table train_passenger add column status varchar(255) not null;
+
+
+select * from admin;
+
+alter table train_passenger add column seat_number varchar(255) not null;
+
+
+select * from payment;
+desc payment;
+
+INSERT INTO payment (emailID, payment_mode, transaction_date, transaction_time, transaction_amount)
+VALUES ('tejasdevgharkar12@gmail.com', 'Credit Card', '2023-10-01', '10:00:00', 2500.00);
+
+alter table train_passenger 
+modify column id varchar(300);
+
+ALTER TABLE train_passenger
+add column source varchar(255),
+add column destination varchar(255);
+
+ALTER TABLE train_passenger
+ADD COLUMN refunded_amount int not null;
+ADD COLUMN passenger_age INT not null,
+ADD COLUMN passenger_gender VARCHAR(300) not null;
+
+update train_passenger tp set is_refunded  = 0 where id = 'PNR323035';
+
+ALTER TABLE train_passenger 
+MODIFY COLUMN booking_date varchar(300),
+MODIFY COLUMN booking_time varchar(300);
+
+select * from new_user nu ;
+
+select * from train_passenger tp ;
+
+select * from train_cancellations tc ;
+alter table train_cancellations drop column train_cancel_date;
+
+delete from train_cancellations where train_no="101067";	
+
+desc train_passenger;
+
+delete from train_passenger where seat_number = 'A2' ;
+
+select * from train_passenger tp where id = 'PNR323035';
+
+select * from Train; where train_no = 101083;
+
+ALTER TABLE train_passenger DROP PRIMARY KEY;
+
+update train_passenger tp set tp.source = 'Pune',tp.destination='Mumbai';
+
+update train_passenger tp set is_refunded = false;
+
+
+SELECT COUNT(*) AS totalPassengers
+FROM train_passenger
+WHERE id = 'PNR402319';
+

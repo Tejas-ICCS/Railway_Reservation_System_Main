@@ -12,9 +12,6 @@
     <form action="loginUserNew" method="post">
       <div class="container">
         <div class="login-box">
-
-
-
             <h1>Log in</h1>
             <p id="tag">Need a User account? <a href="register.jsp">Create an account</a></p>
                 <label for="username">Username or Email</label>

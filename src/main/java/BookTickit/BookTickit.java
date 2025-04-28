@@ -60,9 +60,11 @@ public class BookTickit extends HttpServlet {
     //            dispatcher.forward(request, response);
             // Store trainList in session to persist it across the redirect
             session.setAttribute("from", from);
+            session.setAttribute("to", to);
+
             session.setAttribute("source", from);
             session.setAttribute("destination",to);
-            session.setAttribute("to", to);
+
             session.setAttribute("date", date);
             session.setAttribute("trainList", trainList);
             response.sendRedirect("Booking.jsp");
