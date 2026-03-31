@@ -1,0 +1,14 @@
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/ HTTP/1.1" 200 6118
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/style.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/mumbai.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/logo.png HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/pune.avif HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/gujrat.webp HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/kolkatta.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/havada.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/Delhi.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/benglore.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/chenai.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/dhudhsagar.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [14/Mar/2026:16:16:07 +0530] "GET /Railway_Reservation_System/Image/train.avif HTTP/1.1" 304 -

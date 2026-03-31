@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [19/Apr/2025:12:51:24 +0530] "GET /Railway_Reservation_System HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [19/Apr/2025:12:51:25 +0530] "GET /Railway_Reservation_System/ HTTP/1.1" 200 6824
+0:0:0:0:0:0:0:1 - - [19/Apr/2025:12:51:25 +0530] "GET /Railway_Reservation_System/style.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [19/Apr/2025:12:51:33 +0530] "GET /Railway_Reservation_System/Train_Schedule.jsp HTTP/1.1" 200 4534
+0:0:0:0:0:0:0:1 - - [19/Apr/2025:12:51:33 +0530] "GET /Railway_Reservation_System/Train_Schedule.css HTTP/1.1" 304 -
