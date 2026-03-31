@@ -159,21 +159,7 @@
         </div>
         <div class="team">
             
-            <div class="t1">
-                <img src="Image/Tejas.jpg" alt="Tejas Devgharkar" >
-                <h3 id="tag">Tejas Devgharkar</h3>
-                <span id="tag">C 90</span>
-            </div>
-            <div class="t1">
-                <img src="Image/IMG_20241221_202000.jpg" alt="Pradnya mahadik" >
-                <h3 id="tag">Pradnya Mahadik</h3>
-                <span id="tag">C 11</span>
-            </div>
-            <div class="t1">
-                <img src="Image/IMG_20241221_201707.jpg" alt="Anisa Pathan" >
-                <h3 id="tag">Anisa Pathan</h3>
-                <span id="tag">C 86</span>
-            </div>
+
         </div>
         <footer style="background-color: #313131; color: #fff; padding: 20px 0;">
             <div style="display: flex; justify-content: space-around; flex-wrap: wrap; padding: 20px;">
