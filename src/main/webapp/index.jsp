@@ -157,24 +157,7 @@
         <div class="team1">
             <h1>Team Members</h1>
         </div>
-        <div class="team">
-            
-            <div class="t1">
-                <img src="Image/Tejas.jpg" alt="Tejas Devgharkar" >
-                <h3 id="tag">Tejas Devgharkar</h3>
-                <span id="tag">C 90</span>
-            </div>
-            <div class="t1">
-                <img src="Image/IMG_20241221_202000.jpg" alt="Pradnya mahadik" >
-                <h3 id="tag">Pradnya Mahadik</h3>
-                <span id="tag">C 11</span>
-            </div>
-            <div class="t1">
-                <img src="Image/IMG_20241221_201707.jpg" alt="Anisa Pathan" >
-                <h3 id="tag">Anisa Pathan</h3>
-                <span id="tag">C 86</span>
-            </div>
-        </div>
+        
         <footer style="background-color: #313131; color: #fff; padding: 20px 0;">
             <div style="display: flex; justify-content: space-around; flex-wrap: wrap; padding: 20px;">
               
@@ -182,7 +165,7 @@
               <div style="max-width: 300px;">
                 <h4>About Us</h4>
                 <p>We aim to provide a seamless railway ticket booking experience, offering real-time updates, schedule management, and customer support.</p>
-              </div>
+              </div>    
           
               <!-- Quick Links -->
               <div style="max-width: 200px;">
@@ -201,7 +184,7 @@
                 <h4>Customer Support</h4>
                 <ul style="list-style-type: none; padding: 0;">
                   <li>Helpline: 7666300048</li>
-                  <li>Email: tejasdevgharkar12@gmail.com</li>
+                  <li>Email: unknown@gmail.com</li>
                   <li><a href="feedback.html" style="color: #fff; text-decoration: none;">Submit Feedback</a></li>
                 </ul>
               </div>

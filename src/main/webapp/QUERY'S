@@ -344,7 +344,7 @@ select * from payment;
 desc payment;
 
 INSERT INTO payment (emailID, payment_mode, transaction_date, transaction_time, transaction_amount)
-VALUES ('tejasdevgharkar12@gmail.com', 'Credit Card', '2023-10-01', '10:00:00', 2500.00);
+VALUES ('unknown@gmail.com', 'Credit Card', '2023-10-01', '10:00:00', 2500.00);
 
 alter table train_passenger 
 modify column id varchar(300);

@@ -17,6 +17,8 @@ import java.util.Map;
 @WebServlet("/CancelTrain")
 public class CancelTrain extends HttpServlet {
 
+    Connection con = DatabaseConnection.getInstance().getConnection();
+
     private boolean refundAmount(String pnr , int amount) {
         Connection con = DatabaseConnection.getInstance().getConnection();
         String refundQuery = "update train_passenger tp set is_refunded = ? , refunded_amount = ? where id = ?";

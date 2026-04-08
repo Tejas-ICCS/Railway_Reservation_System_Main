@@ -74,7 +74,7 @@
             <h4>Customer Support</h4>
             <ul style="list-style-type: none; padding: 0;">
                 <li>Helpline: 7666300048</li>
-                <li>Email: tejasdevgharkar12@gmail.com</li>
+                <li>Email: unknown@gmail.com</li>
                 <li><a href="feedback.html" style="color: #fff; text-decoration: none;">Submit Feedback</a></li>
             </ul>
         </div>
