@@ -137,11 +137,11 @@ public class PassengerDetails extends HttpServlet {
             session.setAttribute("passEmailId", emailID);
             session.setAttribute("totalPassengers", totalPassenger);
 
-            response.sendRedirect("/Railway_Reservation_System/payment.jsp");
+            response.sendRedirect(request.getContextPath() + "/payment.jsp");
         }
         else {
             session.setAttribute("selectedDate","Train Not for the selected date\nPlease select a valid date");
-            response.sendRedirect("/Railway_Reservation_System/BookingPassenger.jsp");
+            response.sendRedirect(request.getContextPath() + "/BookingPassenger.jsp");
         }
     }
 }

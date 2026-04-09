@@ -8,13 +8,15 @@
 
 <%@ page session="true" %>
 <%
-     String user = (String) session.getAttribute("FirstName");
-     String admin = (String) session.getAttribute("adminName");
-    if (user == null){
-        response.sendRedirect("/Railway_Reservation_System/login.jsp");
-    }
-    String otpVerificationError = (String) session.getAttribute("otpVerificationError");
+    String user = (String) session.getAttribute("FirstName");
+    String admin = (String) session.getAttribute("adminName");
 
+    if (user == null){
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        return;
+    }
+
+    String otpVerificationError = (String) session.getAttribute("otpVerificationError");
 %>
 
 <%
@@ -214,12 +216,6 @@
     <br><br>
 </div>
 
-
-<%
-    // Clear train list after displaying results to prevent persistence on refresh
-    session.removeAttribute("trainList");
-%>
-
 </body>
 
 <footer style="background-color: #313131; color: #fff; padding: 20px 0;">
@@ -248,7 +244,7 @@
             <h4>Customer Support</h4>
             <ul style="list-style-type: none; padding: 0;">
                 <li>Helpline: 7666300048</li>
-                <li>Email: tejasdevgharkar12@gmail.com</li>
+                <li>Email: unknown@gmail.com</li>
                 <li><a href="feedback.html" style="color: #fff; text-decoration: none;">Submit Feedback</a></li>
             </ul>
         </div>

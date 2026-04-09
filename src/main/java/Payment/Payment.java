@@ -77,7 +77,7 @@ public class Payment extends HttpServlet{
 
         try{
            se.sendEmail("Request Of Payment",email,from,htmlContent);
-           resp.sendRedirect("/Railway_Reservation_System/submitOtp.jsp?mode=payment");
+           resp.sendRedirect(req.getContextPath()+"/submitOtp.jsp?mode=payment");
        }
        catch(Exception e){
            e.printStackTrace();

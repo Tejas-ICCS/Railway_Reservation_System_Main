@@ -166,7 +166,7 @@ public class submitOTP extends HttpServlet {
                     sendEmail.sendEmail("Change Password", to, from,htmlContent);
 //                    session.removeAttribute("users");
                     session.setAttribute("otpVerificationError","Payment Successful");
-                    response.sendRedirect("/Railway_Reservation_System/login.jsp");
+                    response.sendRedirect(request.getContextPath() + "/login.jsp");
 
 
                 }catch(Exception e) {
@@ -278,7 +278,7 @@ public class submitOTP extends HttpServlet {
                     if (allPassengersInserted) {
                         // Ticket booking success, set session attribute and redirect to booking page
                         session.setAttribute("TicketBooked", "Ticket Booked Successfully");
-                        response.sendRedirect("/Railway_Reservation_System/Booking.jsp");
+                        response.sendRedirect(request.getContextPath() + "/Booking.jsp");
 
                         // Create HTML table for email content
                         StringBuilder htmlTable = new StringBuilder();
@@ -362,7 +362,7 @@ public class submitOTP extends HttpServlet {
                         // If any passenger failed to insert, inform the user
                         System.out.println("One or more passengers could not be added to the database. Please try again.");
                         // You can redirect the user to a failure page or show an error message
-                        response.sendRedirect("/Railway_Reservation_System/Booking.jsp");
+                        response.sendRedirect(request.getContextPath() + "/Booking.jsp");
                     }
 
 
@@ -403,7 +403,7 @@ public class submitOTP extends HttpServlet {
 //                    session.removeAttribute("users");
                     System.out.println("Payment Successful");
                     session.setAttribute("otpVerificationError","Payment Successful");
-//                    response.sendRedirect("/Railway_Reservation_System/Booking.jsp");
+//                    response.sendRedirect(request.getContextPath() + /Booking.jsp");
 
                 }catch(Exception e) {
                     System.out.println("Catch Exception");
@@ -412,9 +412,9 @@ public class submitOTP extends HttpServlet {
             }
         } else {
 //            response.sendRedirect("submitOtp.jsp?mode=" + mode + "&error=invalid");
-//            response.sendRedirect("/Railway_Reservation_System/login.jsp");
+//            response.sendRedirect(request.getContextPath() + /login.jsp");
 //            session.setAttribute("otpVerificationError","Enter Correct OTP");
-            response.sendRedirect("/Railway_Reservation_System/submitOtp.jsp?otpVerificationError=wrongOtp");
+            response.sendRedirect(request.getContextPath() + "/submitOtp.jsp?otpVerificationError=wrongOtp");
 
         }
     }

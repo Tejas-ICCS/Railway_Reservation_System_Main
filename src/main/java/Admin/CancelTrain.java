@@ -17,6 +17,8 @@ import java.util.Map;
 @WebServlet("/CancelTrain")
 public class CancelTrain extends HttpServlet {
 
+    Connection con = DatabaseConnection.getInstance().getConnection();
+
     private boolean refundAmount(String pnr , int amount) {
         Connection con = DatabaseConnection.getInstance().getConnection();
         String refundQuery = "update train_passenger tp set is_refunded = ? , refunded_amount = ? where id = ?";
@@ -127,12 +129,12 @@ public class CancelTrain extends HttpServlet {
                 if (row > 0) {
                     System.out.println("Train cancelled by Admin");
                     session.setAttribute("cancelTrain", "Train cancelled by "+session.getAttribute("adminName"));
-                    response.sendRedirect("/Railway_Reservation_System//adminPage.jsp");
+                    response.sendRedirect(request.getContextPath() + "adminPage.jsp");
                 }
                 else{
                     System.out.println("can't cancel train");
                     session.setAttribute("cancelTrain", "Something went wrong");
-                    response.sendRedirect("/Railway_Reservation_System//adminPage.jsp");
+                    response.sendRedirect(request.getContextPath() + "adminPage.jsp");
                 }
 
                 String updateTrain = "UPDATE Train SET is_cancelled = TRUE WHERE train_no = ?";
@@ -142,11 +144,11 @@ public class CancelTrain extends HttpServlet {
                 if (row > 0) {
                     System.out.println("Updated train ");
 
-                    response.sendRedirect("/Railway_Reservation_System/adminPage.jsp");
+                    response.sendRedirect(request.getContextPath() + "adminPage.jsp");
                 }
                 else{
                     System.out.println("can't Update train");
-                    response.sendRedirect("/Railway_Reservation_System/adminPage.jsp");
+                    response.sendRedirect(request.getContextPath() + "adminPage.jsp");
                 }
             }
         }

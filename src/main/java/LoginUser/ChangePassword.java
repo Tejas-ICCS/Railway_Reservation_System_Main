@@ -75,12 +75,12 @@ public class ChangePassword extends HttpServlet {
                    }
                    else{
                        session.setAttribute("PasswordChange", "New password and Confirm password do not match!");
-                       response.sendRedirect("/Railway_Reservation_System/ChangePassword.jsp");
+                       response.sendRedirect(request.getContextPath() + "ChangePassword.jsp");
                    }
 
                 }
                 if(x>0){
-                    response.sendRedirect("/Railway_Reservation_System/index.jsp");
+                    response.sendRedirect(request.getContextPath() + "index.jsp");
                 }
             }
             else
@@ -117,11 +117,11 @@ public class ChangePassword extends HttpServlet {
 
                     } else {
                         session.setAttribute("PasswordChange", "New password and Confirm password do not match!");
-                        response.sendRedirect("/Railway_Reservation_System/ChangePassword.jsp");
+                        response.sendRedirect(request.getContextPath() + "ChangePassword.jsp");
                     }
 
                     if(x>0){
-                        response.sendRedirect("/Railway_Reservation_System/index.jsp");
+                        response.sendRedirect(request.getContextPath() + "index.jsp");
                     }
                     else {
 
@@ -129,7 +129,7 @@ public class ChangePassword extends HttpServlet {
                 }
                 else {
                     session.setAttribute("PasswordChange", "Invalid Username or Password");
-                    response.sendRedirect("/Railway_Reservation_System/ChangePassword.jsp");
+                    response.sendRedirect(request.getContextPath() + "ChangePassword.jsp");
                 }
             }
         }catch (Exception e){

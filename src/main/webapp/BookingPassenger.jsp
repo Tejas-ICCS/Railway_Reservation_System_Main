@@ -2,8 +2,10 @@
 <%
     String user = (String) session.getAttribute("FirstName");
     String admin = (String) session.getAttribute("adminName");
+
     if (user == null){
-        response.sendRedirect("/Railway_Reservation_System/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        return;
     }
 %>
 
@@ -175,7 +177,7 @@
         <br><br><br>
     </div>
     <div class="btn">
-        <button onclick="generatePassenger()" class="search-button">Add Passsenger</button>
+        <button type="button" onclick="generatePassenger()" class="search-button">Add Passsenger</button>
     </div>
     <div id="details"></div>
 
@@ -211,7 +213,7 @@
             <h4>Customer Support</h4>
             <ul style="list-style-type: none; padding: 0;">
                 <li>Helpline: 7666300048</li>
-                <li>Email: tejasdevgharkar12@gmail.com</li>
+                <li>Email: unknown@gmail.com</li>
                 <li><a href="feedback.html" style="color: #fff; text-decoration: none;">Submit Feedback</a></li>
             </ul>
         </div>
