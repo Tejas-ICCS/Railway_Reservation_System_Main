@@ -43,7 +43,7 @@ public class LoginUser extends HttpServlet {
 
 				String name = fname + " " + lname;
 				session.setAttribute("FirstName", name);
-				response.sendRedirect("/Railway_Reservation_System/index.jsp");
+				response.sendRedirect(request.getContextPath() + "/index.jsp");
 			}
 			else {
 				session.setAttribute("error", "User Not Found");

@@ -2,8 +2,10 @@
 <%
     String user = (String) session.getAttribute("FirstName");
     String admin = (String) session.getAttribute("adminName");
+
     if (user == null){
-        response.sendRedirect("/Railway_Reservation_System/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        return;
     }
 %>
 
@@ -175,7 +177,7 @@
         <br><br><br>
     </div>
     <div class="btn">
-        <button onclick="generatePassenger()" class="search-button">Add Passsenger</button>
+        <button type="button" onclick="generatePassenger()" class="search-button">Add Passsenger</button>
     </div>
     <div id="details"></div>
 

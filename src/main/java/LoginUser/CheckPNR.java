@@ -69,7 +69,7 @@ public class CheckPNR extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("checkPNR.jsp");
             rd.forward(request, response);
 
-//            response.sendRedirect("/Railway_Reservation_System/checkPNR.jsp");
+//            response.sendRedirect(request.getContextPath() + /checkPNR.jsp");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class CheckPNR extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("checkPNR.jsp");
                 rd.forward(request, response);
 
-//                response.sendRedirect("/Railway_Reservation_System/checkPNR.jsp");
+//                response.sendRedirect(request.getContextPath() + /checkPNR.jsp");
 
             } catch (Exception ex) {
                 ex.printStackTrace();

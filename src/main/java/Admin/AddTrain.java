@@ -82,7 +82,7 @@ public class    AddTrain extends HttpServlet {
 
                 if (temp==Integer.parseInt(trainNo)){
                     session.setAttribute("trainmsg", "Train already exists");
-                    response.sendRedirect("/Railway_Reservation_System/adminPage.jsp");
+                    response.sendRedirect(request.getContextPath() + "adminPage.jsp");
                 }
                 else{
                     ps = con.prepareStatement(insertTrain);
@@ -102,11 +102,11 @@ public class    AddTrain extends HttpServlet {
                     if(row>0){
                         System.out.println("Inserted Train");
                         session.setAttribute("trainmsg", "Train added Successfully");
-                        response.sendRedirect("/Railway_Reservation_System/adminPage.jsp");
+                        response.sendRedirect(request.getContextPath() + "adminPage.jsp");
                     }
                     else{
                         session.setAttribute("trainmsg", "Something went wrong");
-                        response.sendRedirect("/Railway_Reservation_System/adminPage.jsp");
+                        response.sendRedirect(request.getContextPath() + "adminPage.jsp");
                     }
                 }
 

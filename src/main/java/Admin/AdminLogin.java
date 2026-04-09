@@ -29,7 +29,7 @@ public class AdminLogin extends HttpServlet {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 session.setAttribute("adminName", rs.getString("name"));
-                response.sendRedirect("/Railway_Reservation_System/index.jsp");
+                response.sendRedirect(request.getContextPath() + "index.jsp");
                 System.out.println("Admin logged in");
             }
             else {

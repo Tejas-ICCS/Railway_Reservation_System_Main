@@ -103,7 +103,7 @@ public class ForgotDetails extends HttpServlet{
 
 						SendEmail sendEmail = new SendEmail();
 						sendEmail.sendEmail(subject, emailId, from,htmlContent);
-						response.sendRedirect("/Railway_Reservation_System/submitOtp.jsp?mode=forgot");
+						response.sendRedirect(request.getContextPath() + "submitOtp.jsp?mode=forgot");
 
 					
 					}catch(Exception e) {
@@ -113,7 +113,7 @@ public class ForgotDetails extends HttpServlet{
 					
 				}
 				else {
- 					response.sendRedirect("/Railway_Reservation_System/login.jsp");
+ 					response.sendRedirect(request.getContextPath() + "login.jsp");
 				}
 				
 				

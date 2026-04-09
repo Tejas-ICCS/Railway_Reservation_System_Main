@@ -8,13 +8,15 @@
 
 <%@ page session="true" %>
 <%
-     String user = (String) session.getAttribute("FirstName");
-     String admin = (String) session.getAttribute("adminName");
-    if (user == null){
-        response.sendRedirect("/Railway_Reservation_System/login.jsp");
-    }
-    String otpVerificationError = (String) session.getAttribute("otpVerificationError");
+    String user = (String) session.getAttribute("FirstName");
+    String admin = (String) session.getAttribute("adminName");
 
+    if (user == null){
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        return;
+    }
+
+    String otpVerificationError = (String) session.getAttribute("otpVerificationError");
 %>
 
 <%
@@ -213,12 +215,6 @@
 
     <br><br>
 </div>
-
-
-<%
-    // Clear train list after displaying results to prevent persistence on refresh
-    session.removeAttribute("trainList");
-%>
 
 </body>
 
